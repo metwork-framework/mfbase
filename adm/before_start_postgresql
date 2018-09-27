@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cat "${MODULE_HOME}/config/postgresql.conf" |envtpl >"${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf"
+if test -s "${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf"; then
+    exit 0
+else
+    exit 1
+fi

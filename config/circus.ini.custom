@@ -1,0 +1,22 @@
+{% extends "circus.ini" %}
+
+{% block custom %}
+{% raw %}
+
+[watcher:postgresql]
+cmd=postgres
+args=-D {{MFBASE_POSTGRESQL_DATA_DIR}} -p {{MFBASE_POSTGRESQL_PORT}} 
+hooks.before_start=circus_hooks.before_start_shell
+hooks.after_start=circus_hooks.after_start_shell
+copy_env = True
+autostart = True
+respawn = True
+stdout_stream.class = FileStream
+stdout_stream.filename = {{MODULE_RUNTIME_HOME}}/log/postgresql_startup.log
+stderr_stream.class = FileStream
+stderr_stream.filename = {{MODULE_RUNTIME_HOME}}/log/postgresql_startup.log
+numprocesses=1
+stop_signal=INT
+
+{% endraw %}
+{% endblock %}

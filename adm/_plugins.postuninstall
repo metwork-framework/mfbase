@@ -1,0 +1,27 @@
+#!/bin/bash
+
+function usage() {
+    echo "usage: _plugins.postuninstall NAME VERSION RELEASE"
+    echo "DO NOT USE DIRECTLY ! it's called by plugins.uninstall"
+}
+
+if test $# -ne 3; then
+    usage
+    exit 1
+fi
+
+NAME=${1}
+if test "${1}" = "--help"; then
+    usage
+    exit 0
+fi
+
+PLUGIN_HOME="${MODULE_RUNTIME_HOME}/var/plugins/${NAME}"
+if ! test -d "${PLUGIN_HOME}"; then
+    exit 0
+fi
+
+source "${MODULE_HOME}/share/sqltools.sh"
+
+dropdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" >/dev/null 2>&1
+dropuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" >/dev/null 2>&1

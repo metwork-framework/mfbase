@@ -1,0 +1,5 @@
+adm/root.mk
+doc/_build
+doc/layer_*.md
+doc/layer_*.rst
+layers/layer1_python3/0500_extra_python_packages/src
