@@ -128,16 +128,20 @@ Note: services are automatically stopped, so you have to start them again after 
 `plugins.uninstall PLUGIN_NAME_WITHOUT_PATH_EXTENSION_OR_VERSION`
 
 
+
+## Installation guide
+
+See [this document](https://github.com/metwork-framework/resources/blob/master/documents/install_a_metwork_package.md).
+
+
 ## Contributing guide
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 
 
-
 ## Code of Conduct
 
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) file.
-
 
 
