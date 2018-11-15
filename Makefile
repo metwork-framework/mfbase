@@ -6,7 +6,7 @@ MODULE_LOWERCASE=mfbase
 
 all:: directories
 	echo "root@mfcom" >$(MFBASE_HOME)/.layerapi2_dependencies
-	echo "postgresql@mfext" >>$(MFBASE_HOME)/.layerapi2_dependencies
+	echo "scientific@mfext" >>$(MFBASE_HOME)/.layerapi2_dependencies
 	cd adm && $(MAKE)
 	cd config && $(MAKE)
 	cd layers && $(MAKE)
