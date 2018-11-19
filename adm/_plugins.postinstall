@@ -54,9 +54,24 @@ EOF
 batch_psql /tmp/grant.$$ "Granting all privileges for user plugin_${NAME}" || exit 1
 rm -f /tmp/grant.$$
 
+cat >/tmp/extensions.$$ <<EOF
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE EXTENSION hstore;
+CREATE EXTENSION postgres_fdw;
+CREATE EXTENSION btree_gist;
+CREATE EXTENSION btree_gin;
+CREATE EXTENSION pg_trgm;
+CREATE EXTENSION pgcrypto;
+EOF
+batch_psql /tmp/extensions.$$ "Creating extensions" "plugin_${NAME}" "metwork" || exit 1
+rm -f /tmp/extensions.$$
+
 SQLFILES=$(ls ${PLUGIN_HOME}/sql/*.sql 2>/dev/null)
 
 for SQLFILE in ${SQLFILES}; do
     BASENAME=$(basename "${SQLFILE}")
-    batch_psql "${SQLFILE}" "Playing ${BASENAME}" || exit 1
+    batch_psql "${SQLFILE}" "Playing ${BASENAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
 done
