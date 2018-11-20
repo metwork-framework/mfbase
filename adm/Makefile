@@ -1,4 +1,4 @@
-BINS=_wait_postgresql.py before_start_postgresql _plugins.postinstall _plugins.postuninstall
+BINS=_wait_postgresql.py before_start_postgresql _plugins.postinstall _plugins.preuninstall
 SHARES=sqltools.sh
 
 include root.mk

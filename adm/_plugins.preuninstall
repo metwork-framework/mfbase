@@ -23,5 +23,7 @@ fi
 
 source "${MODULE_HOME}/share/sqltools.sh"
 
-dropdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" >/dev/null 2>&1
-dropuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" >/dev/null 2>&1
+RES=0
+dropdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+dropuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+exit ${RES}
