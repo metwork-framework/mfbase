@@ -14,4 +14,12 @@
 * better batch_psql function ([c0827a6](https://github.com/metwork-framework/mfbase/commit/c0827a6))
 
 
+*  feat: change default configuration ([289041b](https://github.com/metwork-framework/mfbase/commit/289041b))
+
+
+### BREAKING CHANGES
+
+* no admin module configured by default
+
+
 
