@@ -5,8 +5,6 @@ MODULE_LOWERCASE=mfbase
 -include $(MFEXT_HOME)/share/main_root.mk
 
 all:: directories
-	echo "root@mfcom" >$(MFBASE_HOME)/.layerapi2_dependencies
-	echo "scientific@mfext" >>$(MFBASE_HOME)/.layerapi2_dependencies
 	cd adm && $(MAKE)
 	cd config && $(MAKE)
 	cd layers && $(MAKE)
