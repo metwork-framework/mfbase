@@ -6,7 +6,6 @@ rm -Rf foobar*
 set -x
 set -e
 
-mfbase.start
 bootstrap_plugin.py create --no-input --make --install --delete foobar
 
 source "${MFBASE_HOME}/share/sqltools.sh"
@@ -18,5 +17,4 @@ EOF
 batch_psql "/tmp/postgis.sql" "test postgis" plugin_foobar plugin_foobar
 
 plugins.uninstall foobar
-mfbase.stop
 rm -Rf foobar*
