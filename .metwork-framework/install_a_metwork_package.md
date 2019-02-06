@@ -1,4 +1,4 @@
-# How to install/upgrade/remove mfbase metwork package (with internet access)
+# How to install/upgrade/remove mfbase metwork module (with internet access)
 
 [//]: # (automatically generated from https://github.com/metwork-framework/resources/blob/master/cookiecutter/_%7B%7Bcookiecutter.repo%7D%7D/.metwork-framework/install_a_metwork_package.md)
 
@@ -9,7 +9,7 @@ You must:
 - have configured the metwork yum repository. Please see [the corresponding document](configure_metwork_repo.md) document to do that.
 - have an internet access on this computer
 
-## Install mfbase metwork package
+## Install mfbase metwork module
 
 ## Full installation
 
@@ -60,10 +60,10 @@ Or you can also reboot your computer (because metwork services are started autom
 
 
 
-## Uninstall mfbase metwork package
+## Uninstall mfbase metwork module
 
 
-To uninstall mfbase metwork package, please stop corresponding metwork services with the `root` command:
+To uninstall mfbase metwork module, please stop corresponding metwork services with the `root` command:
 
 ```
 service metwork stop mfbase
@@ -76,9 +76,9 @@ Then, use the following command (still as `root` user):
 yum remove "metwork-mfbase*"
 ```
 
-## Upgrade mfbase metwork package
+## Upgrade mfbase metwork module
 
-To upgrade mfbase metwork package, use the following commands (still as `root` user):
+To upgrade mfbase metwork module, use the following commands (still as `root` user):
 
 
 ```
@@ -88,7 +88,7 @@ service metwork stop mfbase
 
 
 ```
-# We upgrade mfbase metwork package
+# We upgrade mfbase metwork module
 yum upgrade "metwork-mfbase*"
 ```
 
@@ -99,29 +99,29 @@ service metwork start mfbase
 ```
 
 
-## Uninstall all metwork packages
+## Uninstall all metwork modules
 
-To uninstall all metwork packages, use following root commands:
+To uninstall all metwork modules, use following root commands:
 
 ```
 # We stop metwork services
 service metwork stop
 
-# we remove metwork packages
+# we remove metwork modules
 yum remove "metwork-*"
 ```
 
-## Upgrade all metwork packages
+## Upgrade all metwork modules
 
 The same idea applies to upgrade.
 
-For example, to upgrade all metwork packages on a computer, use following root commands:
+For example, to upgrade all metwork modules on a computer, use following root commands:
 
 ```
 # We stop metwork services
 service metwork stop
 
-# We upgrade metwork packages
+# We upgrade metwork modules
 yum upgrade "metwork-*"
 
 # We start metwork services
