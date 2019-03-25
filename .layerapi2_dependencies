@@ -1,5 +1,5 @@
 root@mfcom
 python3@mfcom
-scientific@mfext
+scientific_core@mfext
 #+python3_circus@mfext
 #+rpm@mfext
