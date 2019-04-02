@@ -15,7 +15,7 @@ You must:
 
 You just have to execute the following command (as `root` user):
 
-```
+```bash
 yum install metwork-mfbase
 ```
 
@@ -24,7 +24,7 @@ yum install metwork-mfbase
 If you prefer to start with a minimal installation, you have to execute the following command
 (as `root` user):
 
-```
+```bash
 yum install metwork-mfbase-minimal
 ```
 
@@ -32,7 +32,7 @@ yum install metwork-mfbase-minimal
 
 ### Optional dependencies addons
 
-```
+```bash
 # To install some devtools
 yum install metwork-mfext-devtools
 
@@ -52,7 +52,7 @@ yum install metwork-mfext-python2
 
 You can start corresponding services with the root command:
 
-```
+```bash
 service metwork start
 ```
 
@@ -65,14 +65,14 @@ Or you can also reboot your computer (because metwork services are started autom
 
 To uninstall mfbase metwork module, please stop corresponding metwork services with the `root` command:
 
-```
+```bash
 service metwork stop mfbase
 ```
 
 Then, use the following command (still as `root` user):
 
 
-```
+```bash
 yum remove "metwork-mfbase*"
 ```
 
@@ -81,19 +81,19 @@ yum remove "metwork-mfbase*"
 To upgrade mfbase metwork module, use the following commands (still as `root` user):
 
 
-```
+```bash
 # We stop mfbase services
 service metwork stop mfbase
 ```
 
 
-```
+```bash
 # We upgrade mfbase metwork module
 yum upgrade "metwork-mfbase*"
 ```
 
 
-```
+```bash
 # We start mfbase services
 service metwork start mfbase
 ```
@@ -103,7 +103,7 @@ service metwork start mfbase
 
 To uninstall all metwork modules, use following root commands:
 
-```
+```bash
 # We stop metwork services
 service metwork stop
 
@@ -117,7 +117,7 @@ The same idea applies to upgrade.
 
 For example, to upgrade all metwork modules on a computer, use following root commands:
 
-```
+```bash
 # We stop metwork services
 service metwork stop
 
