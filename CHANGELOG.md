@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Feat
+- mfbase depends now on scientific_core[@mfext](https://github.com/mfext) layer
+
 <a name="v0.5.7"></a>
 ## [v0.5.7] - 2019-03-16
 
