@@ -4,6 +4,9 @@
 ### Feat
 - mfbase depends now on scientific_core[@mfext](https://github.com/mfext) layer
 
+<a name="v0.6.0"></a>
+## [v0.6.0] - 2019-04-01
+
 <a name="v0.5.7"></a>
 ## [v0.5.7] - 2019-03-16
 
