@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Feat
+- add postgresql dump/restore commands for plugins
 - mfbase depends now on scientific_core[@mfext](https://github.com/mfext) layer
 
 <a name="v0.6.0"></a>
