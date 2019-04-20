@@ -7,6 +7,9 @@
 - add postgresql dump/restore commands for plugins
 
 
+### Bug Fixes
+- the spatial_ref_sys table is not owned by plugin user
+
 
 
 
