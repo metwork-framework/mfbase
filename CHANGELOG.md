@@ -9,6 +9,7 @@
 
 ### Bug Fixes
 - the spatial_ref_sys table is not owned by plugin user
+- better postgresql status during startup (on slow systems)
 
 
 
