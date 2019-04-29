@@ -1,0 +1,41 @@
+{% extends "telegraf.conf" %}
+{% block custom %}
+
+# Read metrics from one or many postgresql servers
+#[[inputs.postgresql]]
+#  address = "postgres://metwork@localhost:{{MFBASE_POSTGRESQL_PORT}}/metwork?sslmode=disable"
+
+[[inputs.postgresql_extensible]]
+  address = "postgres://metwork@localhost:{{MFBASE_POSTGRESQL_PORT}}/metwork?sslmode=disable"
+
+[[inputs.postgresql_extensible.query]]
+  sqlquery="SELECT * FROM pg_stat_database"
+  version=901
+  withdbname=false
+  tagvalue=""
+
+[[inputs.postgresql_extensible.query]]
+  sqlquery="SELECT * FROM pg_stat_bgwriter"
+  version=901
+  withdbname=false
+  tagvalue=""
+
+[[inputs.postgresql_extensible.query]]
+  sqlquery="SELECT datname as db, pg_database_size(oid) as db_size FROM pg_database"
+  version=901
+  withdbname=false
+  tagvalue="db"
+
+[[inputs.postgresql_extensible.query]]
+  sqlquery="select setting as max_connections from pg_settings where name='max_connections'"
+  version=801
+  withdbname=false
+  tagvalue=""
+
+[[inputs.postgresql_extensible.query]]
+  sqlquery="select setting as shared_buffers from pg_settings where name='shared_buffers'"
+  version=801
+  withdbname=false
+  tagvalue=""
+
+{% endblock %}
