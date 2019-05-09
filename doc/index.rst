@@ -10,6 +10,7 @@ MFBASE documentation
    configure_metwork_repo
    install_a_metwork_package
    configure_a_metwork_package
+   mfbase_load_env
    mfbase_quick_start
    mfbase_manage
    plugins_guide
@@ -25,7 +26,6 @@ MFBASE documentation
 
 .. todo::
     | Add Monitoring section (with MFADMIN).
-    | Add Loading MFBASE environment (from mfbase user and for any user it makes sense).
 
 Indices and tables
 ==================
