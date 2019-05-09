@@ -20,7 +20,7 @@ def get_release():
     return os.environ.get('MODULE_VERSION', 'unknown')
 
 
-def build_intershinx_mapping_url(current_module, module):
+def build_intersphinx_mapping_url(current_module, module):
     """
     Guess and build the documentation url for a Metwork module
     :param current_module: the current Metwork module name
@@ -207,9 +207,9 @@ man_pages = [
      [author], 1)
 ]
 
-intersphinx_mapping = {'mfext': (build_intershinx_mapping_url(project, 'mfext'), None),
-                       'mfadmin': (build_intershinx_mapping_url(project, 'mfadmin'), None),
-                       'mfdata': (build_intershinx_mapping_url(project, 'mfdata'), None),
+intersphinx_mapping = {'mfext': (build_intersphinx_mapping_url(project, 'mfext'), None),
+                       'mfadmin': (build_intersphinx_mapping_url(project, 'mfadmin'), None),
+                       'mfdata': (build_intersphinx_mapping_url(project, 'mfdata'), None),
                        }
 
 # -- Options for Texinfo output -------------------------------------------
