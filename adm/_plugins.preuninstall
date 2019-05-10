@@ -16,7 +16,10 @@ if test "${1}" = "--help"; then
     exit 0
 fi
 
-PLUGIN_HOME="${MODULE_RUNTIME_HOME}/var/plugins/${NAME}"
+PLUGIN_HOME=$(plugins.info --just-home "${NAME}" || true)
+if test "${PLUGIN_HOME}" = ""; then
+    exit 0
+fi
 if ! test -d "${PLUGIN_HOME}"; then
     exit 0
 fi
