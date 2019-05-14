@@ -1,7 +1,7 @@
 .. index:: Managing MFBASE, 
 # Managing MFBASE
 
-.. seealso ::
+.. seealso::
     :doc:`plugins_guide` documentation.
     
 .. index:: mfbase services
@@ -25,6 +25,10 @@ With `mfbase.init`, you can reinit your module.
 .. Note::
     When executing this command, services are automatically stopped, so you have to start them again after this command is executed.
 
+.. seealso::
+    | `Dump database`_ section.
+    | `Restore database`_ section.
+
 .. index:: mfbase plugins management
 
 ## Managing `mfbase` plugins (as `mfbase` user)
@@ -34,7 +38,7 @@ Check :ref:`plugins_guide:Plugins commands` documentation in order to manage `mf
 .. index:: make commands, make develop, make clean, make superclean, make
 ## Make commands
 
-This section is a complement to the general section :ref:`plugins_guide:Make commands`. 
+Check :ref:`plugins_guide:Make commands`. 
 
 The following commands described in this :ref:`plugins_guide:Make commands` are not available or do not make sense for the MFBASE module:
 
@@ -42,3 +46,49 @@ The following commands described in this :ref:`plugins_guide:Make commands` are 
 - make clean
 - make superclean
 - make
+
+.. index:: dump database, plugins.pgdump.sh
+## Dump database
+
+In order to save/dump your database, you may issue the following command from the root MFBASE directory:
+```bash
+plugins.pgdump.sh {your_plugin_name} > {path_to_your_dump_file.sql}
+```
+
+e.g., if the plugin name is `foo`:
+
+```bash
+plugins.pgdump.sh foo > /tmp/foo_dump.sql
+```
+
+.. note::
+    Begin the output with a command to create the database itself and reconnect to the created database. (With a script of this form, it doesn't matter which database in the destination installation you connect to before running the script).
+
+.. seealso::
+    | `Restore database`_ section.
+    | `PostgreSQL pg_dump documentation <https://www.postgresql.org/docs/current/app-pgdump.html>`_
+
+
+.. index:: restore database, plugins.pgrestore.sh
+## Restore database
+In order to restore your database, you may issue the following command from the root MFBASE directory:
+```bash
+plugins.pgrestore.sh {your_plugin_name} > {path_to_your_restore_file.sql}
+```
+
+e.g., if the plugin name is `foo`:
+
+```bash
+plugins.pgrestore.sh foo  /tmp/foo_dump.sql
+```
+
+.. caution::
+    If the database exists, it will be dropped before restoring it.
+
+.. seealso::
+    | `Dump database`_ section.
+    | `PostgreSQL pg_restore documentation <https://www.postgresql.org/docs/current/app-pgrestore.html>`_
+
+<!--
+Intentional comment to prevent m2r from generating bad rst statements when the file ends with a block .. xxx ::
+-->
