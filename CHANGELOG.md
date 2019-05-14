@@ -6,6 +6,7 @@
 ### New Features
 - add postgresql dump/restore commands for plugins
 - monitor postgresql with telegraf
+- don't use plugin dir as plugin names
 
 
 ### Bug Fixes
