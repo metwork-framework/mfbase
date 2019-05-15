@@ -14,6 +14,7 @@
 - better postgresql status during startup (on slow systems)
 - fix building issues with proxy
 - fix typo
+- fix bug CHANGELOGS not generated when CHANGELOGS.md doesn't exist (for the first time)
 
 
 
