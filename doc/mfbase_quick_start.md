@@ -16,7 +16,7 @@ Once `mfbase` is installed:
 
 .. hint::
 	Once MFBASE is installed, a `metwork` :index:`administrative account` is created with default password `metwork`. You can change it in the `[postgresql]` section of the `/home/mfdata/config/config.ini` file. The created database user has the following privileges:
-![metwork_user_privileges](./images/metwork_user_privileges.jpg)
+![metwork_user_privileges](./_images/metwork_user_privileges.jpg)
 
 
 ## Activate MFBASE environment by logging in as mfbase user.
@@ -136,7 +136,7 @@ This will create:
 
 
 The created database user has the following privileges:
-![plugin_user_privileges](./images/plugin_user_privileges.jpg)
+![plugin_user_privileges](./_images/plugin_user_privileges.jpg)
 
 .. note::
 	The database name consists of the following : `plugin_{your_plugin_name}`. Same for the database username/userpassord.
