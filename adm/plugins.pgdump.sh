@@ -15,7 +15,7 @@ if test "${1}" = "--help"; then
 fi
 NAME=${1}
 
-pg_dump --create -U "${MFBASE_POSTGRESQL_USERNAME}" -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" "plugin_${NAME}"
+pg_dump --exclude-schema=tiger --exclude-schema=tiger_data --exclude-schema=topology --no-privileges -U "${MFBASE_POSTGRESQL_USERNAME}" -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" "plugin_${NAME}" |grep -v '^CREATE EXTENSION' |grep -v '^COMMENT ON EXTENSION'
 if test $? -ne 0; then
     echo_bold "ERROR DURING DUMP"
     exit 1

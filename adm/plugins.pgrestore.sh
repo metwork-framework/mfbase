@@ -24,8 +24,14 @@ source "${MODULE_HOME}/share/sqltools.sh"
 
 cat >/tmp/restore.$$ <<EOF
 DROP DATABASE IF EXISTS plugin_${NAME};
+EOF
+batch_psql /tmp/restore.$$ "Dropping database for plugin ${NAME}" || exit 1
+
+_create_plugin_database.sh "${NAME}"
+
+cat >/tmp/restore.$$ <<EOF
 \i ${DUMP}
 EOF
+batch_psql /tmp/restore.$$ "Restoring ${DUMP} for plugin ${NAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
 
-batch_psql /tmp/restore.$$ "Restoring ${DUMP} for plugin ${NAME}" || exit 1
 rm -f /tmp/restore.$$
