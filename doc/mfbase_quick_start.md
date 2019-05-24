@@ -93,6 +93,7 @@ CREATE TABLE account(
      email VARCHAR (355) UNIQUE NOT NULL,
      created_on TIMESTAMP NOT NULL,
      last_login TIMESTAMP
+);
 
 ```
 
