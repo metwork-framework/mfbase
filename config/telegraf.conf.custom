@@ -3,7 +3,7 @@
 
 {% raw %}
 [[inputs.postgresql_extensible]]
-  address = "postgres://metwork@localhost:{{MFBASE_POSTGRESQL_PORT}}/metwork?sslmode=disable"
+  address = "postgres://{{MFBASE_POSTGRESQL_USERNAME}}:{{MFBASE_POSTGRESQL_PASSWORD}}@localhost:{{MFBASE_POSTGRESQL_PORT}}/{{MFBASE_POSTGRESQL_DBNAME}}?sslmode=disable"
 
 [[inputs.postgresql_extensible.query]]
   sqlquery="SELECT * FROM pg_stat_database"
