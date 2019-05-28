@@ -11,6 +11,8 @@
 
 
 ### Bug Fixes
+- fix pgsql telegraf configuration
+- fix plugins dump/restore
 - fix bug CHANGELOGS not generated when CHANGELOGS.md doesn't exist (for the first time)
 - fix typo
 - fix building issues with proxy
