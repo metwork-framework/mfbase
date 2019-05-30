@@ -4,6 +4,7 @@
 ## [Unreleased]
 
 ### New Features
+- use envtpl new option --reduce-multi-blank-lines
 - don't use plugin dir as plugin names
 - monitor postgresql with telegraf
 - add postgresql dump/restore commands for plugins
