@@ -17,6 +17,7 @@ MFBASE documentation
    mfbase_pgsql_conf
    mfbase_tips
    mfbase_log
+   mfbase_monitoring
    layer_root
    layer_python3
    layer_default
