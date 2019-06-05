@@ -11,6 +11,7 @@ doc/mfbase_manage.rst
 doc/mfbase_pgsql_conf.rst
 doc/mfbase_tips.rst
 doc/mfbase_log.rst
+doc/mfbase_monitoring.rst
 doc/configure_a_metwork_package.md
 doc/configure_a_metwork_package.rst
 doc/configure_metwork_repo.md
@@ -23,3 +24,4 @@ doc/README.md
 doc/README.rst
 doc/CHANGELOG*.md
 doc/CHANGELOG*.rst
+doc/changelogs.rst
