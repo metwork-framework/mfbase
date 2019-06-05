@@ -16,3 +16,22 @@ If you make your first steps with MFBASE, we prompt you to check the :doc:`mfbas
 If you need a 'ready to use' database engine, MFBASE is the module you need.
 
 When you create a PostgreSQL database from MFBASE, the most popular PostgreSQL and PostGIS extensions are installed and available.
+
+## How it works?
+
+![image](./_images/overall_architecture.svg)
+
+[Circus](https://circus.readthedocs.io/en/latest/) is a Python program in order to monitor and control processes and sockets.
+
+[Telegraf](https://docs.influxdata.com/telegraf/) is a plugin-driven server agent for collecting and sending metrics and events from databases, systems, and IoT sensors.
+
+Circus acts as a process watcher and runner. You may check the full `circus.ini` configuration file in the `/home/mfbase/tmp/config_auto/` directory. Check the [Circus architecture](https://circus.readthedocs.io/en/latest/design/architecture/)
+
+:index:`Dashboards` are available through :doc:`The MFADMIN module <mfadmin:index>`.
+
+.. seealso::
+    :doc:`Monitoring MFBASE and dashboards <mfbase_monitoring>`     
+
+<!--
+Intentional comment to prevent m2r from generating bad rst statements when the file ends with a block .. xxx ::
+-->
