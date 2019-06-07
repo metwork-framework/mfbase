@@ -25,9 +25,6 @@ MFBASE documentation
    todo
    changelogs
 
-.. todo::
-    | Add Monitoring section (with MFADMIN).
-
 Indices and tables
 ==================
 
