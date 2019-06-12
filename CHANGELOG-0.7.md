@@ -1,6 +1,17 @@
 # release_0.7 CHANGELOG
 
 
+## [Unreleased]
+
+### New Features
+
+
+### Bug Fixes
+- add missing send_mflog_logs option in configuration
+
+
+
+
 
 ## v0.7.0 (2019-05-28)
 
