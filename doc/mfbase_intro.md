@@ -25,7 +25,7 @@ When you create a PostgreSQL database from MFBASE, the most popular PostgreSQL a
 
 [Telegraf](https://docs.influxdata.com/telegraf/) is a plugin-driven server agent for collecting and sending metrics and events from databases, systems, and IoT sensors.
 
-`mflog2mfadmin` (based on [jsonlog2elasticsearch](https://github.com/metwork-framework/jsonlog2elasticsearch)) on is a daemon to send [mflog](https://github.com/metwork-framework/mflog) to elasticsearch.
+`mflog2mfadmin` (based on [jsonlog2elasticsearch](https://github.com/metwork-framework/jsonlog2elasticsearch)) is a daemon to send [mflog](https://github.com/metwork-framework/mflog) logs to elasticsearch.
 
 Circus acts as a process watcher and runner. You may check the full `circus.ini` configuration file in the `/home/mfbase/tmp/config_auto/` directory. Check the [Circus architecture](https://circus.readthedocs.io/en/latest/design/architecture/)
 
@@ -34,6 +34,7 @@ Circus acts as a process watcher and runner. You may check the full `circus.ini`
 .. seealso::
     | :doc:`MFADMIN Documentation <mfadmin:index>`
     | :doc:`mfadmin:mfadmin_monitoring_plugins`.
+    | :ref:`mfadmin:mfadmin_miscellaneous:Circus hooks` 
     
 <!--
 Intentional comment to prevent m2r from generating bad rst statements when the file ends with a block .. xxx ::

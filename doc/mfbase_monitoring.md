@@ -12,7 +12,7 @@ Through Metwork MFADMIN module, you may monitor PostgreSQL: refer to the :doc:`r
 ## Dashboards
 :index:`Time-series dashboards` are available from :ref:`MFADMIN Grafana GUI Interface <mfadmin:mfadmin_monitoring_plugins:Grafana Time-series dashboards>`.
 
-:index:`Logs dashboards`, i.e. [mflog](https://github.com/metwork-framework/mfloglogs) logs and [Nginx](https://www.nginx.com/) access logs are available from :ref:`MFADMIN Kibana GUI Interface <mfadmin:mfadmin_monitoring_plugins:Kibana dashboards>`.
+:index:`Logs dashboards`, i.e. [mflog](https://github.com/metwork-framework/mflog) logs and [Nginx](https://www.nginx.com/) access logs are available from :ref:`MFADMIN Kibana GUI Interface <mfadmin:mfadmin_monitoring_plugins:Kibana dashboards>`.
 
 You may also create your own dashboards: refer to the :ref:`MFADMIN topic <mfadmin:mfadmin_miscellaneous:Create specific dashboards>` documentation.
 
