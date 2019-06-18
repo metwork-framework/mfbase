@@ -6,6 +6,9 @@ MFBASE produces logs files stored in the `log` directory of the MFBASE root dire
 
 Logs parameters as log retention, log level are configured in the `[log]` section of the `config/config.ini` file in the MFBASE root directory. Check this file for further details.
 
+.. seealso::
+    :ref:`mfadmin:mfadmin_miscellaneous:Exporting logs`
+
 ## PostgreSQL logs files
 
 :index:`PostgreSQL logs` are stored in in the `log/psql` directory of the MFBASE root directory.
