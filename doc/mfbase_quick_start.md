@@ -74,7 +74,7 @@ To create the plugin, run the following command:
 bootstrap_plugin.py create foo
 ```
 
-Once you have entered this command, you will be asked to fill in some fields to configure and customize your plugin: for now, press `[ENTER]` to set the default value,  you will be able to modify you plugin configuration anytime later.
+Once you have entered this command, you will be asked to fill in some fields to configure and customize your plugin: for now, press `[ENTER]` to set the default value,  you will be able to modify your plugin configuration anytime later.
 
 
 The `/home/mfbase` directory now contains a `foo` sub-directory with files:
