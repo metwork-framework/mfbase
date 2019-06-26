@@ -88,9 +88,9 @@ export MODULE_LOWERCASE=mfdata
 SRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export SRC_DIR
 
-    
+
         export MODULE_HAS_HOME_DIR=1
-    
+
 
 
 ROOT_PATH=${MODULE_HOME}/bin:${MFCOM_HOME}/bin:${MFEXT_HOME}/bin:${PATH:-}
@@ -156,7 +156,7 @@ fi
 # FIXME: do not hardcode this
 # FIXME: move to layer root extra_env ?
 echo "export PYTHON2_SHORT_VERSION := 2.7" >>adm/root.mk
-echo "export PYTHON3_SHORT_VERSION := 3.5" >>adm/root.mk
+echo "export PYTHON3_SHORT_VERSION := 3.7" >>adm/root.mk
 
 echo "BOOTSTRAP DONE !"
 echo "MFEXT_HOME=${MFEXT_HOME}"
