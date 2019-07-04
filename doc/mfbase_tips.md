@@ -4,7 +4,7 @@
 .. index:: base command, plugin_env
 ## Connect psql to your plugin database
 
-In order to easelly run the PostgreSQL interactive terminal :index:`psql` on your plugin database, from your MFBASE plugin directory, issue
+In order to easily run the PostgreSQL interactive terminal :index:`psql` on your plugin database, from your MFBASE plugin directory, issue
 
 - the :ref:`plugins_guide:\`\`plugin_env\`\`` command
 - then the `base` command.
