@@ -24,25 +24,47 @@ if ! test -d "${PLUGIN_HOME}"; then
     exit 0
 fi
 
-source "${MODULE_HOME}/share/sqltools.sh"
-
-echo -n "- Create user plugin_${NAME}..."
-echo_running
-createuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" --no-createdb --no-createrole --no-superuser "plugin_${NAME}" >/tmp/createuser.$$ 2>&1
-if test $? -eq 0; then
-    echo_ok
-    rm -f /tmp/createuser.$$
+T=$(config.py "${PLUGIN_HOME}/config.ini" general use_postgresql 2>/dev/null)
+if test "${T}" = "0"; then
+    USE_POSTGRESQL=0
 else
-    echo_nok
-    echo_bold "see /tmp/createuser.$$ for more details"
-    exit 1
+    USE_POSTGRESQL=1
+fi
+T=$(config.py "${PLUGIN_HOME}/config.ini" general use_storage 2>/dev/null)
+if test "${T}" = "0"; then
+    USE_STORAGE=0
+else
+    USE_STORAGE=1
 fi
 
-_create_plugin_database.sh "${NAME}"
+if test "${USE_STORAGE}" = "1"; then
+    mkdir -p "${MFBASE_NGINX_STORAGE_DIR}"
+    if test -d "${PLUGIN_HOME}/initial_storage"; then
+        rm -Rf "${MFBASE_NGINX_STORAGE_DIR:?}/${NAME}"
+        cp -Rf "${PLUGIN_HOME}/initial_storage" "${MFBASE_NGINX_STORAGE_DIR}/${NAME}"
+    fi
+fi
+if test "${USE_POSTGRESQL}" = "1"; then
+    source "${MODULE_HOME}/share/sqltools.sh"
 
-SQLFILES=$(ls ${PLUGIN_HOME}/sql/*.sql 2>/dev/null)
+    echo -n "- Create postgresql user plugin_${NAME}..."
+    echo_running
+    createuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" --no-createdb --no-createrole --no-superuser "plugin_${NAME}" >/tmp/createuser.$$ 2>&1
+    if test $? -eq 0; then
+        echo_ok
+        rm -f /tmp/createuser.$$
+    else
+        echo_nok
+        echo_bold "see /tmp/createuser.$$ for more details"
+        exit 1
+    fi
 
-for SQLFILE in ${SQLFILES}; do
-    BASENAME=$(basename "${SQLFILE}")
-    batch_psql "${SQLFILE}" "Playing ${BASENAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
-done
+    _create_plugin_database.sh "${NAME}"
+
+    SQLFILES=$(ls ${PLUGIN_HOME}/sql/*.sql 2>/dev/null)
+
+    for SQLFILE in ${SQLFILES}; do
+        BASENAME=$(basename "${SQLFILE}")
+        batch_psql "${SQLFILE}" "Playing ${BASENAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
+    done
+fi

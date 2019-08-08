@@ -2,16 +2,49 @@
 
 {% block custom %}
 
-if test "${RES}" = "0"; then
-    echo -n "- Waiting/testing postgresql service..."
-    echo_running
-    _wait_postgresql.py >/dev/null 2>&1
-    if test $? -eq 0; then
-        echo_ok
-    else
-        echo_nok
-        RES=1
+if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
+    if test "${RES}" = "0"; then
+        echo -n "- Waiting/testing postgresql service..."
+        echo_running
+        _wait_postgresql.py >/dev/null 2>&1
+        if test $? -eq 0; then
+            echo_ok
+        else
+            echo_nok
+            RES=1
+        fi
     fi
+fi
+
+if test "${MFBASE_NGINX_FLAG}" = "1"; then
+    circus_status_watcher.sh nginx || RES=1
+    if test "${RES}" = "0"; then
+        # FIXME: move to mfcom
+        echo -n "- Checking nginx uuid..."
+        echo_running
+        nginx.status >/dev/null 2>&1
+        if test $? -eq 0; then
+            echo_ok
+        else
+            echo_nok
+            RES=1
+        fi
+    fi
+    if test "${RES}" = "0"; then
+        echo -n "- Checking nginx worker zombies..."
+        echo_running
+        find_zombies_nginx_workers.py >/dev/null 2>&1
+        if test $? -eq 0; then 
+            echo_ok
+        else
+            echo_nok "zombies found"
+            RES=1
+        fi
+    fi
+fi
+
+if test "${MFBASE_AUTORESTART_FLAG}" = "1"; then
+    circus_status_watcher.sh conf_monitor || RES=1
 fi
 
 {% endblock %}
