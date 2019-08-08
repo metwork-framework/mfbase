@@ -28,20 +28,38 @@ source "${MODULE_HOME}/share/sqltools.sh"
 
 RES=0
 
-# see https://dba.stackexchange.com/questions/11893/force-drop-db-while-others-may-be-connected
-# see https://github.com/metwork-framework/mfbase/issues/23
-cat >/tmp/drop.$$ <<EOF
+T=$(config.py "${PLUGIN_HOME}/config.ini" general use_postgresql 2>/dev/null)
+if test "${T}" = "0"; then
+    USE_POSTGRESQL=0
+else
+    USE_POSTGRESQL=1
+fi
+T=$(config.py "${PLUGIN_HOME}/config.ini" general use_storage 2>/dev/null)
+if test "${T}" = "0"; then
+    USE_STORAGE=0
+else
+    USE_STORAGE=1
+fi
+
+if test "${USE_STORAGE}" = "1"; then
+    rm -Rf "${MFBASE_NGINX_STORAGE_DIR:?}/${NAME}"
+fi
+if test "${USE_POSTGRESQL}" = "1"; then
+    # see https://dba.stackexchange.com/questions/11893/force-drop-db-while-others-may-be-connected
+    # see https://github.com/metwork-framework/mfbase/issues/23
+    cat >/tmp/drop.$$ <<EOF
 UPDATE pg_database SET datallowconn = 'false' WHERE datname = 'plugin_${NAME}';
 EOF
-batch_psql /tmp/drop.$$ "make sure no one can connect to this database" || RES=1
-rm -f /tmp/drop.$$
+    batch_psql /tmp/drop.$$ "make sure no one can connect to this database" || RES=1
+    rm -f /tmp/drop.$$
 
-cat >/tmp/drop.$$ <<EOF
+    cat >/tmp/drop.$$ <<EOF
 SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'plugin_${NAME}';
 EOF
-batch_psql /tmp/drop.$$ "force disconnection of all clients connected" || RES=1
-rm -f /tmp/drop.$$
+    batch_psql /tmp/drop.$$ "force disconnection of all clients connected" || RES=1
+    rm -f /tmp/drop.$$
 
-dropdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
-dropuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+    dropdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+    dropuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+fi
 exit ${RES}

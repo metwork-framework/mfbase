@@ -1,4 +1,4 @@
-CONFIGS=config.ini postgresql.conf mflog_override.conf
+CONFIGS=config.ini postgresql.conf mflog_override.conf nginx.conf
 
 include ../adm/root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk

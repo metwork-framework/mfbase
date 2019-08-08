@@ -4,51 +4,52 @@
 
 source {{MODULE_HOME}}/share/sqltools.sh
 
-echo -n "- Checking postgresql data dir..."
-echo_running
-if test -d "${MFBASE_POSTGRESQL_DATA_DIR}"; then
-    echo_warning "(already exist)"
-    echo -n "- Removing ${MFBASE_POSTGRESQL_DATA_DIR}..."
+if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
+    echo -n "- Checking postgresql data dir..."
     echo_running
-    rm -Rf "${MFBASE_POSTGRESQL_DATA_DIR}" >/dev/null 2>&1
     if test -d "${MFBASE_POSTGRESQL_DATA_DIR}"; then
+        echo_warning "(already exist)"
+        echo -n "- Removing ${MFBASE_POSTGRESQL_DATA_DIR}..."
+        echo_running
+        rm -Rf "${MFBASE_POSTGRESQL_DATA_DIR}" >/dev/null 2>&1
+        if test -d "${MFBASE_POSTGRESQL_DATA_DIR}"; then
+            echo_nok
+            echo_bold "BIG PROBLEM => EXITING"
+            exit 1
+        fi
+        echo_ok
+    else
+        echo_ok
+    fi
+
+    echo -n "- Preparing postgresql data dir..."
+    echo_running
+    mkdir -p "${MFBASE_POSTGRESQL_DATA_DIR}" >/dev/null 2>&1
+    if test -d "${MFBASE_POSTGRESQL_DATA_DIR}"; then
+        echo_ok
+    else
         echo_nok
         echo_bold "BIG PROBLEM => EXITING"
         exit 1
     fi
-    echo_ok
-else
-    echo_ok
-fi
 
-echo -n "- Preparing postgresql data dir..."
-echo_running
-mkdir -p "${MFBASE_POSTGRESQL_DATA_DIR}" >/dev/null 2>&1
-if test -d "${MFBASE_POSTGRESQL_DATA_DIR}"; then
-    echo_ok
-else
-    echo_nok
-    echo_bold "BIG PROBLEM => EXITING"
-    exit 1
-fi
+    echo -n "- Starting postgresql initdb..."
+    echo_running
+    echo "${MFBASE_POSTGRESQL_PASSWORD}" >"/tmp/initdb_pwfile.$$"
+    initdb --pgdata=${MFBASE_POSTGRESQL_DATA_DIR} --encoding=UTF8 --username=${MFBASE_POSTGRESQL_USERNAME} --pwfile=/tmp/initdb_pwfile.$$ --locale=${MFBASE_POSTGRESQL_LOCALE} >/tmp/initdb.$$ 2>&1
+    if test $? -eq 0; then
+        echo_ok
+        rm -f "/tmp/initdb.$$"
+    else
+        echo_nok
+        echo_bold "Can't initdb, see /tmp/initdb.$$ for more details => EXITING"
+        exit 1
+    fi
+    rm -f "/tmp/initdb_pwfile.$$"
 
-echo -n "- Starting postgresql initdb..."
-echo_running
-echo "${MFBASE_POSTGRESQL_PASSWORD}" >"/tmp/initdb_pwfile.$$"
-initdb --pgdata=${MFBASE_POSTGRESQL_DATA_DIR} --encoding=UTF8 --username=${MFBASE_POSTGRESQL_USERNAME} --pwfile=/tmp/initdb_pwfile.$$ --locale=${MFBASE_POSTGRESQL_LOCALE} >/tmp/initdb.$$ 2>&1
-if test $? -eq 0; then
-    echo_ok
-    rm -f "/tmp/initdb.$$"
-else
-    echo_nok
-    echo_bold "Can't initdb, see /tmp/initdb.$$ for more details => EXITING"
-    exit 1
-fi
-rm -f "/tmp/initdb_pwfile.$$"
-
-echo "include '${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf'" >>${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
-PG_HBA="${MODULE_RUNTIME_HOME}/var/pgsql/pg_hba.conf"
-cat >${PG_HBA} <<EOF
+    echo "include '${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf'" >>${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
+    PG_HBA="${MODULE_RUNTIME_HOME}/var/pgsql/pg_hba.conf"
+    cat >${PG_HBA} <<EOF
 local   all all trust
 host    sameuser all    0.0.0.0/0   md5"
 host    sameuser all    ::1/128   md5"
@@ -56,50 +57,51 @@ host    all ${MFBASE_POSTGRESQL_USERNAME}    0.0.0.0/0   md5"
 host    all ${MFBASE_POSTGRESQL_USERNAME}    ::1/128   md5"
 EOF
 
-echo -n "- (pre)Starting mfbase services..."
-echo_running
-mfbase.start NOINIT >/dev/null 2>&1
-mfbase.status >/dev/null 2>&1
-if test $? -eq 0; then
-    echo_ok
-else
-    echo_nok
-    echo_bold "=> EXITING"
-    exit 1
-fi
+    echo -n "- (pre)Starting mfbase services..."
+    echo_running
+    mfbase.start NOINIT >/dev/null 2>&1
+    mfbase.status >/dev/null 2>&1
+    if test $? -eq 0; then
+        echo_ok
+    else
+        echo_nok
+        echo_bold "=> EXITING"
+        exit 1
+    fi
 
-echo -n "- Creating database..."
-echo_running
-createdb --host=${MODULE_RUNTIME_HOME}/var --port=${MFBASE_POSTGRESQL_PORT} --username=${MFBASE_POSTGRESQL_USERNAME} ${MFBASE_POSTGRESQL_DBNAME} >/tmp/createdb.$$ 2>&1
-if test $? -eq 0; then
-    echo_ok
-    rm -f "/tmp/createdb.$$"
-else
-    echo_nok
-    echo_bold "Can't createdb, see /tmp/createdb.$$ for more details => EXITING"
-    exit 1
-fi
+    echo -n "- Creating database..."
+    echo_running
+    createdb --host=${MODULE_RUNTIME_HOME}/var --port=${MFBASE_POSTGRESQL_PORT} --username=${MFBASE_POSTGRESQL_USERNAME} ${MFBASE_POSTGRESQL_DBNAME} >/tmp/createdb.$$ 2>&1
+    if test $? -eq 0; then
+        echo_ok
+        rm -f "/tmp/createdb.$$"
+    else
+        echo_nok
+        echo_bold "Can't createdb, see /tmp/createdb.$$ for more details => EXITING"
+        exit 1
+    fi
 
-cat >/tmp/postgis.$$ <<EOF
+    cat >/tmp/postgis.$$ <<EOF
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
 CREATE EXTENSION fuzzystrmatch;
 CREATE EXTENSION postgis_tiger_geocoder;
 EOF
-batch_psql "/tmp/postgis.$$" "Adding postgis extension" || exit 1
-rm -f "/tmp/postgis.$$"
+    batch_psql "/tmp/postgis.$$" "Adding postgis extension" || exit 1
+    rm -f "/tmp/postgis.$$"
 
-for EXTENSION in hstore postgres_fdw btree_gist btree_gin pg_trgm pgcrypto; do
-    cat >/tmp/extension.$$ <<EOF
+    for EXTENSION in hstore postgres_fdw btree_gist btree_gin pg_trgm pgcrypto; do
+        cat >/tmp/extension.$$ <<EOF
 CREATE EXTENSION ${EXTENSION};
 EOF
-    batch_psql "/tmp/extension.$$" "Adding ${EXTENSION} extension" || exit 1
-    rm -f "/tmp/extension.$$"
-done
+        batch_psql "/tmp/extension.$$" "Adding ${EXTENSION} extension" || exit 1
+        rm -f "/tmp/extension.$$"
+    done
 
-echo -n "- Stopping mfbase services..."
-echo_running
-mfbase.stop >/dev/null 2>&1
-echo_ok
+    echo -n "- Stopping mfbase services..."
+    echo_running
+    mfbase.stop >/dev/null 2>&1
+    echo_ok
+fi
 
 {% endblock %}

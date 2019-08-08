@@ -4,5 +4,7 @@
     "license": ["Proprietary", "BSD", "MIT", "GPL", "Specific"],
     "url": "http://yourpluginhomepage",
     "maintainer": "Firstname FAMILYNAME <email>",
-    "vendor": "MetWork"
+    "vendor": "MetWork",
+    "use_postgresql": ["yes", "no"],
+    "use_storage": ["yes", "no"]
 }

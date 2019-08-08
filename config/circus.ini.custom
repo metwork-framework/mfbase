@@ -3,6 +3,7 @@
 {% block custom %}
 {% raw %}
 
+{% if MFBASE_POSTGRESQL_FLAG == "1" %}
 [watcher:postgresql]
 cmd=postgres
 args=-D {{MFBASE_POSTGRESQL_DATA_DIR}} -p {{MFBASE_POSTGRESQL_PORT}} 
@@ -17,6 +18,42 @@ stderr_stream.class = FileStream
 stderr_stream.filename = {{MODULE_RUNTIME_HOME}}/log/postgresql_startup.log
 numprocesses=1
 stop_signal=INT
+{% endif %}
+
+{% if MFBASE_NGINX_FLAG == "1" %}
+[watcher:nginx]
+cmd={{MFEXT_HOME}}/opt/openresty/nginx/sbin/nginx
+args=-p {{MODULE_RUNTIME_HOME}}/tmp/nginx_tmp_prefix -c {{MODULE_RUNTIME_HOME}}/tmp/config_auto/nginx.conf
+numprocesses=1
+stdout_stream.class = FileStream
+stdout_stream.filename = {{MODULE_RUNTIME_HOME}}/log/nginx.log
+stderr_stream.class = FileStream
+stderr_stream.filename = {{MODULE_RUNTIME_HOME}}/log/nginx.log
+copy_env = True
+autostart = True
+respawn = True
+hooks.before_start=circus_hooks.before_start_shell
+hooks.after_stop=circus_hooks.after_stop_shell
+working_dir = {{MODULE_RUNTIME_HOME}}/tmp
+{% endif %}
+
+{% if MFBASE_AUTORESTART_FLAG == "1" %}
+[watcher:conf_monitor]                                                          
+cmd={{MODULE_HOME}}/bin/mfbase_conf_monitor.py                                         
+args=                                                                           
+numprocesses = 1                                                                
+stdout_stream.class = FileStream                                                
+stdout_stream.filename = {{MODULE_RUNTIME_HOME}}/log/conf_monitor.stdout        
+stderr_stream.class = FileStream                                                
+stderr_stream.filename = {{MODULE_RUNTIME_HOME}}/log/conf_monitor.stderr        
+copy_env = True                                                                 
+autostart = True                                                                
+respawn = True           
+hooks.before_start=circus_hooks.before_start_shell
+hooks.after_stop=circus_hooks.after_stop_shell
+working_dir = {{MODULE_RUNTIME_HOME}}/tmp
+stop_signal = 9
+{% endif %}
 
 {% endraw %}
 {% endblock %}

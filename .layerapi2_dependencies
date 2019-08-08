@@ -3,3 +3,4 @@ python3@mfcom
 scientific_core@mfext
 #+python3_circus@mfext
 #+rpm@mfext
+openresty@mfext
