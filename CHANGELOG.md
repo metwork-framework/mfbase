@@ -4,6 +4,7 @@
 ## [Unreleased]
 
 ### New Features
+- introduce webdav support for mfbase plugins
 - use envtpl new option --reduce-multi-blank-lines
 
 
