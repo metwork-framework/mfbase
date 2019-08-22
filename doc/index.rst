@@ -15,9 +15,11 @@ MFBASE documentation
    mfbase_manage
    plugins_guide
    mfbase_pgsql_conf
+   mfbase_nginx_conf
    mfbase_tips
    mfbase_log
    mfbase_monitoring
+   mfbase_miscellaneous
    layer_root
    layer_python3
    layer_default

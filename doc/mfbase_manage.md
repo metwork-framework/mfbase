@@ -40,12 +40,19 @@ Check :ref:`plugins_guide:Plugins commands` documentation in order to manage `mf
 
 Check :ref:`plugins_guide:Make commands`. 
 
-The following commands described in this :ref:`plugins_guide:Make commands` are not available or do not make sense for the MFBASE module:
+The following commands described in this :ref:`plugins_guide:Make commands` are not available or do not make sense for the MFBASE module with **PostgreSQL** storage plugin:
 
 - make develop
 - make clean
 - make superclean
 - make
+
+The following commands described in this :ref:`plugins_guide:Make commands` are not available or do not make sense for the MFBASE module with **WebDAV** storage plugin:
+
+- make clean
+- make superclean
+- make
+
 
 .. index:: dump database, plugins.pgdump.sh
 ## Dump database

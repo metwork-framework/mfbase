@@ -9,7 +9,7 @@ In order to easily run the PostgreSQL interactive terminal :index:`psql` on your
 - the :ref:`plugins_guide:\`\`plugin_env\`\`` command
 - then the `base` command.
 
-e.g. from the `foo` :ref:`MFBASE plugin <mfbase_quick_start:Creating your first plugin>`:
+e.g. from the `foo` :ref:`MFBASE plugin <mfbase_quick_start:Creating your first plugin with PostgreSQL Database support>`:
 
 ```bash
 plugin_env
