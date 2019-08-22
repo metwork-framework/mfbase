@@ -94,7 +94,7 @@ For more details, enter `{MFBASE_HOME}/bin/mfbase_wrapper --help` command.
 
 ## Miscellaneous
 
-You may also be interested in the `outside` Metwork command. Check the :ref:`related documentation <mfdata:outside_metwork_command>`.
+You may also be interested in the `outside` Metwork command. Check the :ref:`related documentation <outside_metwork_command>`.
 
 
 

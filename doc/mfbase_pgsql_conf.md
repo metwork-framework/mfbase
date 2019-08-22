@@ -3,7 +3,7 @@
 
 ## PostgreSQL configuration files 
 
-By default, the PostgreSQL configuration files is stored in the `/home/mfbase/var/pgsql` directory.
+By default, the PostgreSQL configuration files are stored in the `/home/mfbase/var/pgsql` directory.
 
 You may change this location in the `[postgresql]` section of the`/home/mfbase/config/config.ini` file:
 ```cfg
