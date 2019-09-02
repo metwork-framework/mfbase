@@ -77,8 +77,7 @@ integration_tests_common: &integration_tests_common
     - su --command="mfbase.init" - mfbase
     - su --command="mfbase.start" - mfbase
     - su --command="mfbase.status" - mfbase
-    - if test -d "integration_tests"; then chown -R mfbase integration_tests; fi
-    - su --command="cd `pwd`; ./run_integration_tests.sh" - mfbase
+    - if test -d "integration_tests"; then chown -R mfbase integration_tests; cd integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfbase; cd ..; fi
     - su --command="mfbase.stop" - mfbase
 
 
