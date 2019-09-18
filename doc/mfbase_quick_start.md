@@ -111,10 +111,10 @@ To do this, go to the `foo` plugin directory and enter the command:
 make release
 ```
 
-This will create a `.plugin` file that will be used to deploy/install the plugin, e.g. `foo-[version]-1.metwork.mfbase.plugin` where `[version]` is the value of the `version` parameter of the foo `config.ini` you enter when you create the plugin (default value is `${MODULE_VERSION}`). You may change it:
+This will create a `.plugin` file that will be used to deploy/install the plugin, e.g. `foo-[version]-1.metwork.mfbase.plugin` where `[version]` is the value of the `version` parameter of the foo `config.ini` you enter when you create the plugin (default value is `${MFMODULE_VERSION}`). You may change it:
 ```cfg
 # Version of the plugin (X.Y.Z)
-# If the value is [MODULE_VERSION],
+# If the value is [MFMODULE_VERSION],
 # the current module version is used
 version=1.0.0
 ```

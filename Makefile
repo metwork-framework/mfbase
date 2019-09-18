@@ -1,5 +1,5 @@
-MODULE=MFBASE
-MODULE_LOWERCASE=mfbase
+MFMODULE=MFBASE
+MFMODULE_LOWERCASE=mfbase
 
 -include adm/root.mk
 -include $(MFEXT_HOME)/share/main_root.mk

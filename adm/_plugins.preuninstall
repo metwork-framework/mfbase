@@ -24,7 +24,7 @@ if ! test -d "${PLUGIN_HOME}"; then
     exit 0
 fi
 
-source "${MODULE_HOME}/share/sqltools.sh"
+source "${MFMODULE_HOME}/share/sqltools.sh"
 
 RES=0
 
@@ -59,7 +59,7 @@ EOF
     batch_psql /tmp/drop.$$ "force disconnection of all clients connected" || RES=1
     rm -f /tmp/drop.$$
 
-    dropdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
-    dropuser -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+    dropdb -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+    dropuser -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
 fi
 exit ${RES}

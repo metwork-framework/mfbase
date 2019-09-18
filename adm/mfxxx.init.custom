@@ -2,7 +2,7 @@
 
 {% block custom %}
 
-source {{MODULE_HOME}}/share/sqltools.sh
+source {{MFMODULE_HOME}}/share/sqltools.sh
 
 if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
     echo -n "- Checking postgresql data dir..."
@@ -47,8 +47,8 @@ if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
     fi
     rm -f "/tmp/initdb_pwfile.$$"
 
-    echo "include '${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf'" >>${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
-    PG_HBA="${MODULE_RUNTIME_HOME}/var/pgsql/pg_hba.conf"
+    echo "include '${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf'" >>${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
+    PG_HBA="${MFMODULE_RUNTIME_HOME}/var/pgsql/pg_hba.conf"
     cat >${PG_HBA} <<EOF
 local   all all trust
 host    sameuser all    0.0.0.0/0   md5"
@@ -71,7 +71,7 @@ EOF
 
     echo -n "- Creating database..."
     echo_running
-    createdb --host=${MODULE_RUNTIME_HOME}/var --port=${MFBASE_POSTGRESQL_PORT} --username=${MFBASE_POSTGRESQL_USERNAME} ${MFBASE_POSTGRESQL_DBNAME} >/tmp/createdb.$$ 2>&1
+    createdb --host=${MFMODULE_RUNTIME_HOME}/var --port=${MFBASE_POSTGRESQL_PORT} --username=${MFBASE_POSTGRESQL_USERNAME} ${MFBASE_POSTGRESQL_DBNAME} >/tmp/createdb.$$ 2>&1
     if test $? -eq 0; then
         echo_ok
         rm -f "/tmp/createdb.$$"
