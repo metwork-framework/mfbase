@@ -16,11 +16,11 @@ if test "${1}" = "--help"; then
     exit 0
 fi
 
-source "${MODULE_HOME}/share/sqltools.sh"
+source "${MFMODULE_HOME}/share/sqltools.sh"
 
 echo -n "- Creating database plugin_${NAME}..."
 echo_running
-createdb -h "${MODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" --locale="${MFBASE_POSTGRESQL_LOCALE}" "plugin_${NAME}" >/tmp/createdb.$$ 2>&1
+createdb -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" --locale="${MFBASE_POSTGRESQL_LOCALE}" "plugin_${NAME}" >/tmp/createdb.$$ 2>&1
 if test $? -eq 0; then
     echo_ok
     rm -f /tmp/createdb.$$

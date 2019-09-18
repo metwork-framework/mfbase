@@ -9,7 +9,7 @@ You may change this location in the `[postgresql]` section of the`/home/mfbase/c
 ```cfg
 {% raw %}
 [postgresql]
-# data_dir={{MODULE_RUNTIME_HOME}}/var/pgsql
+# data_dir={{MFMODULE_RUNTIME_HOME}}/var/pgsql
 {% endraw %}
 ```
 

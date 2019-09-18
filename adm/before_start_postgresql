@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cat "${MODULE_HOME}/config/postgresql.conf" |envtpl --reduce-multi-blank-lines >"${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf"
-if test -s "${MODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf"; then
+cat "${MFMODULE_HOME}/config/postgresql.conf" |envtpl --reduce-multi-blank-lines >"${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf"
+if test -s "${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf"; then
     exit 0
 else
     exit 1

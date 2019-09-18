@@ -3,7 +3,7 @@
 mkdir -p "${MFBASE_NGINX_STORAGE_DIR}"
 PLUGINS=$(plugins.list --raw 2>/dev/null |awk -F '~~~' '{print $1;}')
 for PLUGIN in ${PLUGINS}; do
-    H=$(get_layer_home "plugin_${PLUGIN}@${MODULE_LOWERCASE}")
+    H=$(get_layer_home "plugin_${PLUGIN}@${MFMODULE_LOWERCASE}")
     T=$(config.py "${H}/config.ini" general use_storage 2>/dev/null)
     if test "${T}" = "0"; then
         USE_STORAGE=0

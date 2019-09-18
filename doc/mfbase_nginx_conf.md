@@ -22,7 +22,7 @@ upload_max_body_size=100
 
 # (if you change this, try to change storage_dir to be on
 #  the same filesystem too)
-clientbody_temp_path={{MODULE_RUNTIME_HOME}}/var/storage.tmp
+clientbody_temp_path={{MFMODULE_RUNTIME_HOME}}/var/storage.tmp
 
 # number of workers
 workers={{MFCOM_HARDWARE_NUMBER_OF_CPU_CORES_MULTIPLIED_BY_2}}
@@ -33,7 +33,7 @@ logging=1
 # Storage directory
 # (if you change this, try to change clientbody_temp_path to be on
 #  the same filesystem too)
-storage_dir={{MODULE_RUNTIME_HOME}}/var/storage
+storage_dir={{MFMODULE_RUNTIME_HOME}}/var/storage
 
 # HTTP/WEBDAV methods allowed
 storage_dav_methods=PUT DELETE MKCOL COPY MOVE

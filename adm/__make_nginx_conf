@@ -8,13 +8,13 @@ from mflog import get_logger
 from mfutil.plugins import layerapi2_label_to_plugin_name
 from configparser_extended import ExtendedConfigParser
 
-MODULE_RUNTIME_HOME = os.environ["MODULE_RUNTIME_HOME"]
-MFBASE_PLUGINS_HOME = os.path.join(MODULE_RUNTIME_HOME,
+MFMODULE_RUNTIME_HOME = os.environ["MFMODULE_RUNTIME_HOME"]
+MFBASE_PLUGINS_HOME = os.path.join(MFMODULE_RUNTIME_HOME,
                                    "var", "plugins")
 CONFIG = os.environ.get('MFCONFIG', 'GENERIC')
 HOSTNAME = os.environ.get('MFCOM_HOSTNAME')
 HOSTNAME_FULL = os.environ.get('MFCOM_HOSTNAME_FULL')
-MODULE = os.environ['MODULE']
+MFMODULE = os.environ['MFMODULE']
 
 LOGGER = get_logger("__make_nginx_conf")
 
@@ -63,7 +63,7 @@ for config_file in config_files:
     if plugin_conf:
         plugins.append(plugin_conf)
 
-nginx_conf_file = os.path.join(os.environ['MODULE_HOME'], 'config',
+nginx_conf_file = os.path.join(os.environ['MFMODULE_HOME'], 'config',
                                'nginx.conf')
 
 with open(nginx_conf_file, "r") as f:

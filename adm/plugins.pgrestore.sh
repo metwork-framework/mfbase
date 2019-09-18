@@ -20,7 +20,7 @@ if ! test -f "${DUMP}"; then
     exit 1
 fi
 
-source "${MODULE_HOME}/share/sqltools.sh"
+source "${MFMODULE_HOME}/share/sqltools.sh"
 
 cat >/tmp/restore.$$ <<EOF
 DROP DATABASE IF EXISTS plugin_${NAME};
