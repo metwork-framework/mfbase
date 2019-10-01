@@ -142,6 +142,20 @@ Note: services are automatically stopped, so you have to start them again after 
 
 
 
+## Full list of components
+
+| Name | Version | Layer |
+| --- | --- | --- |
+| [certifi](https://certifi.io/) | 2019.3.9 | python3 |
+| [psycopg2](http://initd.org/psycopg/) | 2.7.5 | python3 |
+
+*(2 components)*
+
+
+
+
+
+
 
 
 ## Reference documentation
