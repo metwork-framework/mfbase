@@ -14,4 +14,4 @@ for PLUGIN in ${PLUGINS}; do
         mkdir -p "${MFBASE_NGINX_STORAGE_DIR}/${PLUGIN}"
     fi
 done
-"${MFCOM_HOME}/bin/before_start_nginx"
+"${MFEXT_HOME}/opt/misc/bin/before_start_nginx"
