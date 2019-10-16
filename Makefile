@@ -15,4 +15,4 @@ clean::
 	cd layers && $(MAKE) clean
 
 directories:
-	@for DIR in config bin; do mkdir -p $(PREFIX)/$$DIR; done
+	@for DIR in config bin; do mkdir -p $(MFBASE_HOME)/$$DIR; done
