@@ -3,7 +3,7 @@ SHARES=sqltools.sh
 
 include root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk
-include $(MFEXT_HOME)/opt/misc/share/startup_scripts_profiles.mk
+include $(MFEXT_HOME)/share/startup_scripts_profiles.mk
 
 TEMPLATES=$(shell find templates ! -type d)
 TARGET_TEMPLATES:=$(addprefix $(PREFIX)/share/,$(TEMPLATES))
