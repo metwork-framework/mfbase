@@ -1,46 +1,7 @@
-###################
-##### STARTUP #####
-###################
-[startup]
+{% extends "config.ini" %}
 
-# If flag=0, block the start of the module
-flag=1
-
-
-###############
-##### LOG #####
-###############
-[log]
-
-# log retention (in days)
-retention=5
-retention[DEV]=1
-
-# log minimal level
-# (DEBUG => everything,
-#  INFO => everything but not DEBUG,
-#  WARNING => everything but not DEBUG and INFO,
-#  ERROR => everything but not DEBU, INFO and WARNING,
-#  CRITICAL => everything but not DEBUG, INFO, WARNING AND ERROR)
-minimal_level=INFO
-minimal_level[DEV]=DEBUG
-
-# duplicate some log messages in JSON to a specific file (for external monitoring tool)
-# If json_file value is:
-# null => the feature is desactivated
-# AUTO => the json_file is {{MFMODULE_RUNTIME_HOME}}/log/json_logs.log if
-#         [admin]/hostname != null else null (desactivated)
-json_file=AUTO
-
-# Minimal level for this json log file
-# (DEBUG => everything,
-#  INFO => everything but not DEBUG,
-#  WARNING => everything but not DEBUG and INFO,
-#  ERROR => everything but not DEBU, INFO and WARNING,
-#  CRITICAL => everything but not DEBUG, INFO, WARNING AND ERROR)
-json_minimal_level=WARNING
-
-
+{% block custom %}
+{% raw -%}
 ######################
 ##### POSTGRESQL #####
 ######################
@@ -68,27 +29,6 @@ endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus.socket
 
 # Advanced settings, you shouldn't change this
 pubsub_endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus_pubsub.socket
-
-
-########################
-##### ADMIN MODULE #####
-########################
-[admin]
-
-# Hostname hosting the mfadmin module (if any)
-# null => no monitoring
-hostname=null
-
-# Influxdb HTTP port on mfadmin host
-# (change this only if you changed influxdb http port on mfadmin host)
-influxdb_http_port=18086
-
-# ElasticSearch HTTP port on mfadmin host
-# (change this only if you changed elasticsearch http port on mfadmin host)
-elasticsearch_http_port=15603
-
-# If send_mflog_logs=1, send mflog logs to the configured admin hostname
-send_mflog_logs=1
 
 
 ####################
@@ -150,12 +90,5 @@ storage_min_delete_depth=0
 # If set to 1, the nginx autoindex feature will be on for storage dir
 # (see http://nginx.org/en/docs/http/ngx_http_autoindex_module.html)
 storage_autoindex=1
-
-
-#######################
-##### AUTORESTART #####
-#######################
-[autorestart]
-
-# If flag=1, then the autorestart feature is on
-flag=1
+{% endraw %}
+{% endblock %}
