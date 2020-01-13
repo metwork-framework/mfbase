@@ -31,8 +31,8 @@ else
 fi
 
 cat >/tmp/grant.$$ <<EOF
-ALTER USER plugin_${NAME} WITH PASSWORD 'plugin_${NAME}';
-GRANT ALL PRIVILEGES ON DATABASE plugin_${NAME} to plugin_${NAME};
+ALTER USER "plugin_${NAME}" WITH PASSWORD 'plugin_${NAME}';
+GRANT ALL PRIVILEGES ON DATABASE "plugin_${NAME}" to "plugin_${NAME}";
 EOF
 batch_psql /tmp/grant.$$ "Granting all privileges for user plugin_${NAME}" || exit 1
 rm -f /tmp/grant.$$
