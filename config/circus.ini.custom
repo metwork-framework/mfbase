@@ -7,8 +7,8 @@
 [watcher:postgresql]
 cmd=log_proxy_wrapper
 args=--stdout {{MFMODULE_RUNTIME_HOME}}/log/postgresql.log --stderr STDOUT -- postgres -D {{MFBASE_POSTGRESQL_DATA_DIR}} -p {{MFBASE_POSTGRESQL_PORT}} 
-hooks.before_start=circus_hooks.before_start_shell
-hooks.after_start=circus_hooks.after_start_shell
+hooks.before_start=mfext.circus_hooks.before_start_shell
+hooks.after_start=mfext.circus_hooks.after_start_shell
 copy_env = True
 autostart = True
 respawn = True
@@ -24,8 +24,8 @@ numprocesses=1
 copy_env = True
 autostart = True
 respawn = True
-hooks.before_start=circus_hooks.before_start_shell
-hooks.after_stop=circus_hooks.after_stop_shell
+hooks.before_start=mfext.circus_hooks.before_start_shell
+hooks.after_stop=mfext.circus_hooks.after_stop_shell
 working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
 {% endif %}
 
@@ -37,8 +37,8 @@ numprocesses = 1
 copy_env = True                                                                 
 autostart = True                                                                
 respawn = True           
-hooks.before_start=circus_hooks.before_start_shell
-hooks.after_stop=circus_hooks.after_stop_shell
+hooks.before_start=mfext.circus_hooks.before_start_shell
+hooks.after_stop=mfext.circus_hooks.after_stop_shell
 working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
 stop_signal = 9
 {% endif %}
