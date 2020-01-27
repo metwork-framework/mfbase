@@ -2,6 +2,23 @@
 
 
 
+## v0.9.5 (2020-01-13)
+
+- No interesting change
+
+
+## v0.9.4 (2020-01-13)
+
+### New Features
+
+
+### Bug Fixes
+- fix about plugin name with uppercases characters
+
+
+
+
+
 ## v0.9.3 (2019-11-05)
 
 - No interesting change
