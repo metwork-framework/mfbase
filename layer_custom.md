@@ -22,7 +22,6 @@ The `python3` wrapper is available in `${MFEXT_HOME}/bin`. It executes
 a python3 interpreter with following layers loaded :
 
 - `python3@mfext` (if installed)
-- `python3@mfcom` (if installed)
 - scientific_core@mfext ` (if installed)
 - `python3@{current_module}` (if installed)
 
