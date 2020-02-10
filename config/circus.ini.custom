@@ -6,7 +6,7 @@
 {% if MFBASE_POSTGRESQL_FLAG == "1" %}
 [watcher:postgresql]
 cmd=log_proxy_wrapper
-args=--stdout {{MFMODULE_RUNTIME_HOME}}/log/postgresql.log --stderr STDOUT -- postgres -D {{MFBASE_POSTGRESQL_DATA_DIR}} -p {{MFBASE_POSTGRESQL_PORT}} 
+args=--stdout postgresql.log --stderr STDOUT -- postgres -D {{MFBASE_POSTGRESQL_DATA_DIR}} -p {{MFBASE_POSTGRESQL_PORT}} 
 hooks.before_start=mfext.circus_hooks.before_start_shell
 hooks.after_start=mfext.circus_hooks.after_start_shell
 copy_env = True
@@ -19,7 +19,7 @@ stop_signal=INT
 {% if MFBASE_NGINX_FLAG == "1" %}
 [watcher:nginx]
 cmd=log_proxy_wrapper
-args=--stdout {{MFMODULE_RUNTIME_HOME}}/log/nginx_access.log --stderr {{MFMODULE_RUNTIME_HOME}}/log/nginx_error.log -- {{MFEXT_HOME}}/opt/openresty/nginx/sbin/nginx -p {{MFMODULE_RUNTIME_HOME}}/tmp/nginx_tmp_prefix -c {{MFMODULE_RUNTIME_HOME}}/tmp/config_auto/nginx.conf
+args=--stdout nginx_access.log --stderr nginx_error.log -- {{MFEXT_HOME}}/opt/openresty/nginx/sbin/nginx -p {{MFMODULE_RUNTIME_HOME}}/tmp/nginx_tmp_prefix -c {{MFMODULE_RUNTIME_HOME}}/tmp/config_auto/nginx.conf
 numprocesses=1
 copy_env = True
 autostart = True
@@ -32,7 +32,7 @@ working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
 {% if MFBASE_AUTORESTART_FLAG == "1" %}
 [watcher:conf_monitor]                                                          
 cmd=log_proxy_wrapper
-args=--stdout {{MFMODULE_RUNTIME_HOME}}/log/conf_monitor.log --stderr STDOUT -- {{MFMODULE_HOME}}/bin/mfbase_conf_monitor.py                                         
+args=--stdout conf_monitor.log --stderr STDOUT -- {{MFMODULE_HOME}}/bin/mfbase_conf_monitor.py                                         
 numprocesses = 1                                                                
 copy_env = True                                                                 
 autostart = True                                                                
