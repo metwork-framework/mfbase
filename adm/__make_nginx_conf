@@ -5,8 +5,8 @@ import glob
 import envtpl
 import sys
 from mflog import get_logger
-from mfutil.plugins import layerapi2_label_to_plugin_name
-from mfext.plugins_common import get_plugin_parser
+from mfext.plugins_common import get_plugin_parser, \
+    get_plugin_name_from_plugin_home, set_plugin_env
 
 MFMODULE_RUNTIME_HOME = os.environ["MFMODULE_RUNTIME_HOME"]
 MFBASE_PLUGINS_HOME = os.path.join(MFMODULE_RUNTIME_HOME,
@@ -19,23 +19,8 @@ MFMODULE = os.environ['MFMODULE']
 LOGGER = get_logger("__make_nginx_conf")
 
 
-def get_conf(plugin_directory):
+def get_conf(plugin_directory, plugin_name):
     plugin_conf = {}
-    try:
-        with open(os.path.join(plugin_directory,
-                               ".layerapi2_label"), "r") as f:
-            label = f.read().strip()
-    except Exception:
-        LOGGER.warning(
-            "can't read %s/.layerapi2_label => ignoring this plugin",
-            plugin_directory)
-        return None
-    try:
-        plugin_name = layerapi2_label_to_plugin_name(label)
-    except Exception as e:
-        LOGGER.warning("can't read %s/.layerapi2_label with error: %s => "
-                       "ignoring this plugin", plugin_directory, e)
-        return None
     plugin_conf['directory'] = plugin_directory
     plugin_conf['name'] = plugin_name
     parser = get_plugin_parser(plugin_directory, plugin_name)
@@ -56,8 +41,16 @@ if len(sys.argv) == 2:
 else:
     label_files = glob.glob(MFBASE_PLUGINS_HOME + "/*/.layerapi2_label")
 plugin_directories = [os.path.dirname(x) for x in label_files]
-for plugin_directory in plugin_directories:
-    plugin_conf = get_conf(plugin_directory)
+for plugin_dir in plugin_directories:
+    plugin_name = get_plugin_name_from_plugin_home(plugin_dir)
+    if plugin_name is None:
+        LOGGER.warning("can't find plugin_name for "
+                       "plugin_dir=%s => ignoring" % plugin_dir)
+        continue
+    saved_environ = os.environ.copy()
+    set_plugin_env(plugin_dir, plugin_name)
+    plugin_conf = get_conf(plugin_dir, plugin_name)
+    os.environ = saved_environ
     if plugin_conf:
         plugins.append(plugin_conf)
 
