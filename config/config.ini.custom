@@ -18,6 +18,9 @@ locale=C
 username=metwork
 password=metwork
 
+# By default extension plpython3u is not created (it may be dangerous)
+# Change plpython3u to 1 if you want to create the extension
+plpython3u=0
 
 ##################
 ##### CIRCUS #####
