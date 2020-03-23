@@ -98,6 +98,14 @@ EOF
         rm -f "/tmp/extension.$$"
     done
 
+    if test "${MFBASE_POSTGRESQL_PLPYTHON3U}" = "1"; then
+        cat >/tmp/extension.plpython3u <<EOF
+CREATE EXTENSION plpython3u;
+EOF
+        batch_psql "/tmp/extension.plpython3u" "Adding plpython3u extension" || exit 1
+        rm -f "/tmp/extension.plpython3u"
+    fi
+
     echo -n "- Stopping mfbase services..."
     echo_running
     mfbase.stop >/dev/null 2>&1
