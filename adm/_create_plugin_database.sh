@@ -52,4 +52,12 @@ EOF
 batch_psql /tmp/extensions.$$ "Creating extensions" "plugin_${NAME}" "metwork" || exit 1
 rm -f /tmp/extensions.$$
 
+if test "${MFBASE_POSTGRESQL_PLPYTHON3U}" = "1"; then
+    cat >/tmp/extension.plpython3u <<EOF
+CREATE EXTENSION plpython3u;
+EOF
+    batch_psql "/tmp/extension.plpython3u" "Creating plpython3u extension" "plugin_${NAME}" "metwork" || exit 1
+    rm -f "/tmp/extension.plpython3u"
+fi
+
 _fix_plugin_owner.py "plugin_${NAME}" "plugin_${NAME}" >/dev/null
