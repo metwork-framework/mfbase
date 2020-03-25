@@ -47,6 +47,36 @@ def get_conf(plugin_directory):
     if parser.has_option('general', 'use_storage'):
         if parser.getint("general", "use_storage") == 0:
             plugin_conf['use_storage'] = "0"
+    plugin_conf['storage_access_allows'] = 'all'
+    if parser.has_option('general', 'storage_access_allows'):
+        plugin_conf['storage_access_allows'] = \
+            parser.get('general', 'storage_access_allows').split(',')
+    plugin_conf["storage_auth_passwd_filename"] = "null"
+    if parser.has_option('general', "storage_auth_passwd_filename"):
+        plugin_conf["storage_auth_passwd_filename"] = \
+            parser.get('general', "storage_auth_passwd_filename")
+    plugin_conf["storage_satisfy"] = "all"
+    if parser.has_option('general', 'storage_satisfy'):
+        tmp = parser.get('general', 'storage_satisfy')
+        if tmp not in ('all', 'any'):
+            LOGGER.warning(f"invalid value for storage_satisfy: {tmp} "
+                           "=> must be any or all (ignoring it)")
+        else:
+            plugin_conf["storage_satisfy"] = tmp
+    env_var = "MFBASE_NGINX_STORAGE_DAV_METHODS"
+    dav_methods = \
+        [x.strip().upper()
+         for x in os.environ[env_var].replace(' ', ',').split(',')]
+    if len(dav_methods) == 1 and dav_methods[0] == "NULL":
+        dav_methods = []
+    if parser.has_option('general', 'storage_forbidden_dav_methods'):
+        tmp = parser.get('general', 'storage_forbidden_dav_methods')
+        if tmp != "null":
+            tmp = [x.strip().upper() for x in tmp.split(',')]
+            for t in tmp:
+                if t in dav_methods:
+                    dav_methods.remove(t)
+    plugin_conf["storage_dav_methods"] = " ".join(dav_methods)
     return plugin_conf
 
 
