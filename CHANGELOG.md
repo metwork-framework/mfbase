@@ -5,6 +5,7 @@
 
 ### New Features
 - add possibility to create extension plpython3u (not created by default)
+- add possibility to create extension plpython3u (not created by default)
 - remove absolute log paths from log_proxy usages (LOGPROXY_LOG_DIRECTORY env variable is used by default)
 - log refactoring
 - adaptation to removal of layer misc@mfext
