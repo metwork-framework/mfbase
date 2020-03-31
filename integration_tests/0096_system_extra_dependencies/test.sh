@@ -17,8 +17,9 @@ cd "${MFMODULE_HOME}" || exit 1
 cd opt
 for layer in `ls`; do
     cd "${layer}"
-    DEPS1=$(layer_wrapper --layers=${layer}@${MFMODULE_LOWERCASE} -- external_dependencies.sh |awk -F '/' '{print $NF}' |xargs)
-    DEPS2=$(layer_wrapper --layers=${layer}@${MFMODULE_LOWERCASE} -- external_dependencies_not_found.sh |xargs)
+    current_layer=`cat .layerapi2_label`
+    DEPS1=$(layer_wrapper --layers=${current_layer} -- external_dependencies.sh |awk -F '/' '{print $NF}' |xargs)
+    DEPS2=$(layer_wrapper --layers=${current_layer} -- external_dependencies_not_found.sh |xargs)
     DEPS=$(echo $DEPS1 $DEPS2)
     for DEP in ${DEPS}; do
         FOUND=0
@@ -38,6 +39,7 @@ for layer in `ls`; do
         echo
         RET=1
     done
+    cd ..
 done
 
 
