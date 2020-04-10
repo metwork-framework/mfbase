@@ -1,95 +1,36 @@
 #!/usr/bin/env python3
 
 import os
-import glob
 import envtpl
 import sys
 from mflog import get_logger
-from mfext.plugins_common import get_plugin_parser, \
-    get_plugin_name_from_plugin_home, set_plugin_env
-
-MFMODULE_RUNTIME_HOME = os.environ["MFMODULE_RUNTIME_HOME"]
-MFBASE_PLUGINS_HOME = os.path.join(MFMODULE_RUNTIME_HOME,
-                                   "var", "plugins")
-CONFIG = os.environ.get('MFCONFIG', 'GENERIC')
-HOSTNAME = os.environ.get('MFCOM_HOSTNAME')
-HOSTNAME_FULL = os.environ.get('MFCOM_HOSTNAME_FULL')
-MFMODULE = os.environ['MFMODULE']
+from mfplugin.manager import PluginsManager
 
 LOGGER = get_logger("__make_nginx_conf")
+manager = PluginsManager()
 
 
-def get_conf(plugin_directory, plugin_name):
-    plugin_conf = {}
-    plugin_conf['directory'] = plugin_directory
-    plugin_conf['name'] = plugin_name
-    parser = get_plugin_parser(plugin_directory, plugin_name)
-    plugin_conf['use_postgresql'] = "1"
-    if parser.has_option('general', 'use_postgresql'):
-        if parser.getint("general", "use_postgresql") == 0:
-            plugin_conf['use_postgresql'] = "0"
-    plugin_conf['use_storage'] = "1"
-    if parser.has_option('general', 'use_storage'):
-        if parser.getint("general", "use_storage") == 0:
-            plugin_conf['use_storage'] = "0"
-    plugin_conf['storage_access_allows'] = 'all'
-    if parser.has_option('general', 'storage_access_allows'):
-        plugin_conf['storage_access_allows'] = \
-            parser.get('general', 'storage_access_allows').split(',')
-    plugin_conf["storage_auth_passwd_filename"] = "null"
-    if parser.has_option('general', "storage_auth_passwd_filename"):
-        plugin_conf["storage_auth_passwd_filename"] = \
-            parser.get('general', "storage_auth_passwd_filename")
-    plugin_conf["storage_satisfy"] = "all"
-    if parser.has_option('general', 'storage_satisfy'):
-        tmp = parser.get('general', 'storage_satisfy')
-        if tmp not in ('all', 'any'):
-            LOGGER.warning(f"invalid value for storage_satisfy: {tmp} "
-                           "=> must be any or all (ignoring it)")
-        else:
-            plugin_conf["storage_satisfy"] = tmp
-    env_var = "MFBASE_NGINX_STORAGE_DAV_METHODS"
-    dav_methods = \
-        [x.strip().upper()
-         for x in os.environ[env_var].replace(' ', ',').split(',')]
-    if len(dav_methods) == 1 and dav_methods[0] == "NULL":
-        dav_methods = []
-    if parser.has_option('general', 'storage_forbidden_dav_methods'):
-        tmp = parser.get('general', 'storage_forbidden_dav_methods')
-        if tmp != "null":
-            tmp = [x.strip().upper() for x in tmp.split(',')]
-            for t in tmp:
-                if t in dav_methods:
-                    dav_methods.remove(t)
-    plugin_conf["storage_dav_methods"] = " ".join(dav_methods)
-    return plugin_conf
-
-
-plugins = []
+plugin_confs = []
 if len(sys.argv) == 2:
-    label_files = glob.glob(sys.argv[1] + "/.layerapi2_label")
+    p = manager.make_plugin(sys.argv[1])
+    plugins = [p]
 else:
-    label_files = glob.glob(MFBASE_PLUGINS_HOME + "/*/.layerapi2_label")
-plugin_directories = [os.path.dirname(x) for x in label_files]
-for plugin_dir in plugin_directories:
-    plugin_name = get_plugin_name_from_plugin_home(plugin_dir)
-    if plugin_name is None:
-        LOGGER.warning("can't find plugin_name for "
-                       "plugin_dir=%s => ignoring" % plugin_dir)
+    plugins = manager.plugins.values()
+for plugin in plugins:
+    try:
+        plugin.load_full()
+    except Exception as e:
+        LOGGER.warning("invalid plugin: %s (%s) => ignoring it ; details: %s" %
+                       (plugin.name, plugin.home, e))
         continue
-    saved_environ = os.environ.copy()
-    set_plugin_env(plugin_dir, plugin_name)
-    plugin_conf = get_conf(plugin_dir, plugin_name)
-    os.environ = saved_environ
-    if plugin_conf:
-        plugins.append(plugin_conf)
+    plugin_confs.append(plugin)
 
 nginx_conf_file = os.path.join(os.environ['MFMODULE_HOME'], 'config',
                                'nginx.conf')
 
 with open(nginx_conf_file, "r") as f:
     extra_variables = {
-        "PLUGINS": plugins
+        "PLUGINS": plugin_confs
     }
     content = envtpl.render_string(f.read(), extra_variables=extra_variables,
                                    keep_multi_blank_lines=False)

@@ -1,0 +1,5 @@
+{% extends "profile" %}          
+
+{% block custom %} 
+export MFPLUGIN_CONFIGURATION_CLASS=mfbase.plugins.MfbaseConfiguration
+{% endblock %}
