@@ -18,6 +18,9 @@ locale=C
 username=metwork
 password=metwork
 
+# By default extension plpython3u is not created (it may be dangerous)
+# Change plpython3u to 1 if you want to create the extension
+plpython3u=0
 
 ##################
 ##### CIRCUS #####
@@ -76,7 +79,9 @@ logging=1
 storage_dir={{MFMODULE_RUNTIME_HOME}}/var/storage
 
 # HTTP/WEBDAV methods allowed
-storage_dav_methods=PUT DELETE MKCOL COPY MOVE
+# (coma separated list)
+# (empty or "null" => no dav methods allowed)
+storage_dav_methods=PUT,DELETE,MKCOL,COPY,MOVE
 
 # The WebDAV specification only allows creating files in already existing
 # directories. This directive allows creating all needed intermediate directories.
