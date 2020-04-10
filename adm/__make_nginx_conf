@@ -47,7 +47,7 @@ def get_conf(plugin_directory):
     if parser.has_option('general', 'use_storage'):
         if parser.getint("general", "use_storage") == 0:
             plugin_conf['use_storage'] = "0"
-    plugin_conf['storage_access_allows'] = 'all'
+    plugin_conf['storage_access_allows'] = ['all']
     if parser.has_option('general', 'storage_access_allows'):
         plugin_conf['storage_access_allows'] = \
             parser.get('general', 'storage_access_allows').split(',')
