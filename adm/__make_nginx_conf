@@ -12,8 +12,8 @@ MFMODULE_RUNTIME_HOME = os.environ["MFMODULE_RUNTIME_HOME"]
 MFBASE_PLUGINS_HOME = os.path.join(MFMODULE_RUNTIME_HOME,
                                    "var", "plugins")
 CONFIG = os.environ.get('MFCONFIG', 'GENERIC')
-HOSTNAME = os.environ.get('MFCOM_HOSTNAME')
-HOSTNAME_FULL = os.environ.get('MFCOM_HOSTNAME_FULL')
+HOSTNAME = os.environ.get('MFHOSTNAME')
+HOSTNAME_FULL = os.environ.get('MFHOSTNAME_FULL')
 MFMODULE = os.environ['MFMODULE']
 
 LOGGER = get_logger("__make_nginx_conf")
