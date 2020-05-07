@@ -1,4 +1,4 @@
-# Nginx configuration 
+# Nginx configuration
 
 The MFBASE :index:`Nginx configuration` is stored in the `[nginx]` section of the `/home/mfbase/config/config.ini` file, e.g.
 
@@ -25,7 +25,7 @@ upload_max_body_size=100
 clientbody_temp_path={{MFMODULE_RUNTIME_HOME}}/var/storage.tmp
 
 # number of workers
-workers={{MFCOM_HARDWARE_NUMBER_OF_CPU_CORES_MULTIPLIED_BY_2}}
+workers={{MFHARDWARE_NUMBER_OF_CPU_CORES_MULTIPLIED_BY_2}}
 
 # do you want access logging (yes: 1, no: 0)
 logging=1
