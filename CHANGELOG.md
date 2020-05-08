@@ -5,6 +5,7 @@
 
 ### New Features
 - new plugin system
+- remove all references to MFCOM or mfcom, including backward compatibility stuff
 - dav_methods are now configurable by plugin
 - add http auth and ip filtering for storage plugins
 - add possibility to create extension plpython3u (not created by default)
