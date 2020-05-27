@@ -10,7 +10,7 @@ MFBASE_NGINX_STORAGE_DAV_METHODS = \
 
 def coerce_storage_auth_passwd_filename(value):
     if value != "" and not value.startswith('/'):
-        path = os.path.join(os.environ["MFSERV_CURRENT_PLUGIN_DIR"], value)
+        path = os.path.join(os.environ["MFBASE_CURRENT_PLUGIN_DIR"], value)
         return path
     return value
 
