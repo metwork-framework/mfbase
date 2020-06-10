@@ -8,9 +8,10 @@ When you create a plugin with the :ref:`bootstap_plugin <mfbase_quick_start:Crea
 
 By default, the `.layerapi2_dependencies` file contains only minimal dependencies, e.g.:
 ```cfg
-python3@mfbase
+root@mfbase
+python3_scientific_core@mfext
 ```
-means the plugin will use Python3 from the python3 package supplied in MFBASE.
+means the plugin will use Python3 from the python3_scientific_core package supplied in MFEXT.
 
 For more details on `layerapi2`, check :doc:`MFEXT layerapi2 <mfext:layerapi2>` and :ref:`MFEXT layerapi2 syntax <mfext:layerapi2_syntax>` documentation.
 
