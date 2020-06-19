@@ -4,6 +4,7 @@
 ## [Unreleased]
 
 ### New Features
+- remove layer python3@mfbase (psycopg2 is now provided by layer python3_scientific_core@mfext)
 - new plugin system
 - remove all references to MFCOM or mfcom, including backward compatibility stuff
 - dav_methods are now configurable by plugin
