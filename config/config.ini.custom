@@ -83,6 +83,13 @@ storage_dir={{MFMODULE_RUNTIME_HOME}}/var/storage
 # (empty or "null" => no dav methods allowed)
 storage_dav_methods=PUT,DELETE,MKCOL,COPY,MOVE
 
+# extra networks allowed on /uuid endpoint (in addition to 127.0.0.1/32)
+# (coma separated list)
+# ("null" => no extra uuid allowed)
+# example : 
+# uuid_endpoint_extra_allows=5.6.0.0/16,1.2.3.4/32
+uuid_endpoint_extra_allows=null
+
 # The WebDAV specification only allows creating files in already existing
 # directories. This directive allows creating all needed intermediate directories.
 # (set to 0 if you don't want this)
