@@ -1,6 +1,15 @@
 # release_1.0 CHANGELOG
 
 
+## [Unreleased]
+
+### New Features
+- add a configuration option to open the endpoint /uuid to other networks (bp #136) (#138)
+
+
+
+
+
 
 ## v1.0.0 (2020-09-19)
 
