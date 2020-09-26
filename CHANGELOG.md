@@ -2,6 +2,17 @@
 
 
 
+## v0.9.7 (2020-09-25)
+
+### New Features
+- add a configuration option to open the endpoint /uuid to other networks (bp #136) (#137)
+- add a configuration option to open the endpoint /uuid to other networks (bp #136) (#137)
+
+
+
+
+
+
 ## v0.9.6 (2020-01-27)
 
 - No interesting change
