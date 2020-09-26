@@ -4,6 +4,7 @@
 ## [Unreleased]
 
 ### New Features
+- add a configuration option to open the endpoint /uuid to other … (#136)
 - remove layer python3@mfbase (psycopg2 is now provided by layer python3_scientific_core@mfext)
 - new plugin system
 - remove all references to MFCOM or mfcom, including backward compatibility stuff
