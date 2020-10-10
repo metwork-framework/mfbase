@@ -2,6 +2,17 @@
 
 
 
+## v0.9.8 (2020-10-09)
+
+### New Features
+- create extension unaccent (extension now available in mfext) (bp #145) (#146)
+- create extension unaccent (extension now available in mfext) (bp #145) (#146)
+
+
+
+
+
+
 ## v0.9.7 (2020-09-25)
 
 ### New Features
