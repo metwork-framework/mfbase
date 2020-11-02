@@ -59,7 +59,7 @@ EOF
     batch_psql /tmp/drop.$$ "force disconnection of all clients connected" || RES=1
     rm -f /tmp/drop.$$
 
-    dropdb -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
-    dropuser -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+    dropdb --if-exists -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
+    dropuser --if-exists -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" "plugin_${NAME}" || RES=1
 fi
 exit ${RES}
