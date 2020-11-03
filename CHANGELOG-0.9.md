@@ -1,6 +1,17 @@
 # release_0.9 CHANGELOG
 
 
+## [Unreleased]
+
+### New Features
+
+
+### Bug Fixes
+- fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#152)
+
+
+
+
 
 ## v0.9.8 (2020-10-09)
 
