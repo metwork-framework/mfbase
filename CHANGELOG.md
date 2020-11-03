@@ -19,6 +19,7 @@
 
 
 ### Bug Fixes
+- fix uninstall plugin when user and db don't exist (at db level) (#151)
 - fix about plugin name with uppercases characters
 
 
