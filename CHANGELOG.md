@@ -7,6 +7,9 @@
 - add a configuration option to open the endpoint /uuid to other networks (bp #136) (#138)
 
 
+### Bug Fixes
+- fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+
 
 
 
