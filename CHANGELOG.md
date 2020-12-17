@@ -1,23 +1,19 @@
 # release_1.0 CHANGELOG
 
-
-
 ## v1.0.1 (2020-11-03)
 
 ### New Features
+
 - add a configuration option to open the endpoint /uuid to other networks (bp #136) (#138)
 
-
 ### Bug Fixes
+
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
-
-
-
-
 
 ## v1.0.0 (2020-09-19)
 
 ### New Features
+
 - adaptation to removal of layer misc@mfext
 - log refactoring
 - remove absolute log paths from log_proxy usages (LOGPROXY_LOG_DIRECTORY env variable is used by default)
@@ -29,11 +25,8 @@
 - new plugin system
 - remove layer python3@mfbase (psycopg2 is now provided by layer python3_scientific_core@mfext)
 
-
 ### Bug Fixes
+
 - fix about plugin name with uppercases characters
-
-
-
 
 
