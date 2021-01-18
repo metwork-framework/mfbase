@@ -285,7 +285,7 @@ pipeline:
   trigger_plugins_buildimage_centos7:
     image: metwork/drone-downstream-specific-image:latest
     repositories:
-      - metwork-framework/docker-mfbase-centos7-buildimage@${DRONE_BRANCH}
+      - metwork-framework/docker-mfbaseplugins-centos7-buildimage@${DRONE_BRANCH}
     secrets: [ downstream_token, downstream_server ]
     when:
       status: [ success ]
@@ -296,7 +296,7 @@ pipeline:
   trigger_plugins_buildimage_centos8:
     image: metwork/drone-downstream-specific-image:latest
     repositories:
-      - metwork-framework/docker-mfbase-centos8-buildimage@${DRONE_BRANCH}
+      - metwork-framework/docker-mfbaseplugins-centos8-buildimage@${DRONE_BRANCH}
     secrets: [ downstream_token, downstream_server ]
     when:
       status: [ success ]
