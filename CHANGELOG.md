@@ -10,5 +10,6 @@
 ### Bug Fixes
 
 - fix uninstall plugin when user and db don't exist (at db level) (#151)
+- fix base alias inside a plugin_env (thanks to jmdamas) (#171)
 
 
