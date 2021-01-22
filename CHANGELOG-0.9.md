@@ -42,6 +42,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.8 (2020-10-09)
 
@@ -85,6 +86,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.7 (2020-09-25)
 
@@ -128,6 +130,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.6 (2020-01-27)
 
@@ -171,6 +174,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.4 (2020-01-13)
 
@@ -214,6 +218,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.5 (2020-01-13)
 
@@ -257,6 +262,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.3 (2019-11-05)
 
@@ -300,6 +306,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.2 (2019-10-24)
 
@@ -343,6 +350,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.1 (2019-10-23)
 
@@ -386,6 +394,7 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 ## v0.9.0 (2019-10-22)
 
@@ -429,5 +438,6 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 
