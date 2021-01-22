@@ -42,5 +42,6 @@
 - add missing send_mflog_logs option in configuration
 - fix about plugin name with uppercases characters
 - fix uninstall plugin when user and db don't exist (at db level) (bp #151) (#153)
+- fix base alias inside a plugin_env (thanks to jmdamas) (bp #171) (#172)
 
 
