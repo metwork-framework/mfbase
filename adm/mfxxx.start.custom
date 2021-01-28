@@ -1,0 +1,23 @@
+{% extends "mfxxx.start" %}    
+
+{% block custom_before_plugins %}  
+    if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
+        _circus_schedule_start_watcher.sh postgresql || RES=1
+        if test "${RES}" = "0"; then
+            _wait_postgresql.py || RES=1 
+        fi
+    fi
+    if test "${MFBASE_NGINX_FLAG}" = "1"; then
+        _circus_schedule_start_watcher.sh nginx  || RES=1  
+        if test "${RES}" = "0"; then
+            _circus_wait_watcher_started.sh nginx  || RES=1
+        fi
+    fi
+    if test "${MFBASE_AUTORESTART_FLAG}" = "1"; then
+        _circus_schedule_start_watcher.sh conf_monitor || RES=1
+        if test "${RES}" = "0"; then
+            _circus_wait_watcher_started.sh conf_monitor  || RES=1
+        fi
+    fi
+{% endblock %}
+

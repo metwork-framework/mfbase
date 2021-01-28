@@ -1,0 +1,16 @@
+{% extends "mfxxx.stop" %}
+
+{% block custom_after_plugins %}
+    if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
+        _circus_schedule_stop_watcher.sh postgresql
+        _circus_wait_watcher_stopped.sh postgresql
+    fi
+    if test "${MFBASE_NGINX_FLAG}" = "1"; then
+        _circus_schedule_stop_watcher.sh nginx
+        _circus_wait_watcher_stopped.sh nginx
+    fi
+    if test "${MFBASE_AUTORESTART_FLAG}" = "1"; then
+        _circus_schedule_stop_watcher.sh conf_monitor
+        _circus_wait_watcher_stopped.sh conf_monitor
+    fi
+{% endblock %}
