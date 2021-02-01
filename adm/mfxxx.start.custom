@@ -4,7 +4,7 @@
     if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
         _circus_schedule_start_watcher.sh postgresql || RES=1
         if test "${RES}" = "0"; then
-            _wait_postgresql.py || RES=1 
+            mfprogress --timeout=60 --title="- Waiting PostgreSQL..." -- repeat.sh postgresql.status || RES=1
         fi
     fi
     if test "${MFBASE_NGINX_FLAG}" = "1"; then
