@@ -4,15 +4,7 @@
 
 if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
     if test "${RES}" = "0"; then
-        echo -n "- Waiting/testing postgresql service..."
-        echo_running
-        _wait_postgresql.py >/dev/null 2>&1
-        if test $? -eq 0; then
-            echo_ok
-        else
-            echo_nok
-            RES=1
-        fi
+        postgresql.status || RES=1
     fi
 fi
 
