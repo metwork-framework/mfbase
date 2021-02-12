@@ -36,7 +36,7 @@ esac
 if [ -z ${B} ]; then
   B=null
 fi
-if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch"); then
+if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch"]; then
     case "${GITHUB_REF}" in
         refs/heads/experimental* | refs/heads/master | refs/heads/release_*)
             DEP_BRANCH=${B}
