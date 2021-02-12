@@ -74,6 +74,7 @@ else
             DEP_BRANCH=integration
             DEP_DIR=master
             TARGET_DIR=master;;
+    esac
 fi
 
 if [ -z ${TAG} ]; then
