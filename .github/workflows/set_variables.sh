@@ -8,12 +8,17 @@ if test "${OS_VERSION:-}" = ""; then
     exit 1
 fi
 
+TAG=
+DEP_BRANCH=
+TARGET_DIR=
+DEP_DIR=
+
 case "${GITHUB_EVENT_NAME}" in
     repository_dispatch)
         B=${PAYLOAD_BRANCH};;
     pull_request)
         case "${GITHUB_BASE_REF}" in
-            master | integration | experimental* | release_* | ci* | pci* | github*)
+            master | integration | experimental* | release_* | ci* | pci*)
                 B=${GITHUB_BASE_REF};;
             *)
                 B=null;
@@ -31,37 +36,45 @@ esac
 if [ -z ${B} ]; then
   B=null
 fi
-TAG=
-DEP_BRANCH=
-TARGET_DIR=
-DEP_DIR=
-BUILD=yes
-echo "GITHUB_REF = " "${GITHUB_REF}"
-case "${GITHUB_REF}" in
-    refs/heads/experimental* | refs/heads/master | refs/heads/release_*)
-        DEP_BRANCH=${B}
-        DEP_DIR=${B##release_}
-        TARGET_DIR=${B##release_};;
-    refs/heads/integration | refs/heads/ci* | refs/heads/pci* | refs/heads/github* )
-        DEP_BRANCH=integration
-        DEP_DIR=master
-        TARGET_DIR=master;;
-    refs/tags/v*)
-        TAG=${GITHUB_REF#refs/tags/}
-        DEP_BRANCH=${B}
-        DEP_DIR=${B##release_}
-        TARGET_DIR=${B##release_};;
-    refs/pull/*)case "${B}" in
-            integration | ci* | pci* | github*)
-                DEP_BRANCH=integration
-                DEP_DIR=master
-                TARGET_DIR=master;;
-            *)
-                DEP_BRANCH=${B}
-                DEP_DIR=${B##release_}
-                TARGET_DIR=${B##release_};;
-        esac;;
-esac
+if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch"); then
+    case "${GITHUB_REF}" in
+        refs/heads/experimental* | refs/heads/master | refs/heads/release_*)
+            DEP_BRANCH=${B}
+            DEP_DIR=${B##release_}
+            TARGET_DIR=${B##release_};;
+        refs/heads/integration | refs/heads/ci* | refs/heads/pci*)
+            DEP_BRANCH=integration
+            DEP_DIR=master
+            TARGET_DIR=master;;
+        refs/tags/v*)
+            TAG=${GITHUB_REF#refs/tags/}
+            DEP_BRANCH=${B}
+            DEP_DIR=${B##release_}
+            TARGET_DIR=${B##release_};;
+        refs/pull/*)
+case "${B}" in
+                integration | ci* | pci*)
+                    DEP_BRANCH=integration
+                    DEP_DIR=master
+                    TARGET_DIR=master;;
+                *)
+                    DEP_BRANCH=${B}
+                    DEP_DIR=${B##release_}
+                    TARGET_DIR=${B##release_};;
+            esac;;
+    esac
+else
+    # GITHUB_REF is always "refs/heads/master" in this case (repository_dispatch)
+    case "${B}" in
+        master | experimental* | release_*)
+            DEP_BRANCH=${B}
+            DEP_DIR=${B}
+            TARGET_DIR=${B};;
+        integration | ci* | pci*)
+            DEP_BRANCH=integration
+            DEP_DIR=master
+            TARGET_DIR=master;;
+fi
 
 if [ -z ${TAG} ]; then
   CI=continuous_integration
