@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -eu
+#set -eu
+set -x
 
 #We keep the names DRONE_* with github_actions because they are used by guess_version.sh
 export DRONE_BRANCH=${BRANCH}
