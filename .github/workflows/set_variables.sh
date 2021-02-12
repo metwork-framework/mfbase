@@ -36,6 +36,7 @@ DEP_BRANCH=
 TARGET_DIR=
 DEP_DIR=
 BUILD=yes
+echo "GITHUB_REF = " "${GITHUB_REF}"
 case "${GITHUB_REF}" in
     refs/heads/experimental* | refs/heads/master | refs/heads/release_*)
         DEP_BRANCH=${B}
@@ -50,8 +51,7 @@ case "${GITHUB_REF}" in
         DEP_BRANCH=${B}
         DEP_DIR=${B##release_}
         TARGET_DIR=${B##release_};;
-    refs/pull/*)
-        case "${B}" in
+    refs/pull/*)case "${B}" in
             integration | ci* | pci* | github*)
                 DEP_BRANCH=integration
                 DEP_DIR=master
@@ -60,9 +60,7 @@ case "${GITHUB_REF}" in
                 DEP_BRANCH=${B}
                 DEP_DIR=${B##release_}
                 TARGET_DIR=${B##release_};;
-        esac
-
-        ;;
+        esac;;
 esac
 
 if [ -z ${TAG} ]; then
