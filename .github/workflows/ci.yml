@@ -13,7 +13,8 @@ on:
       - v*
   pull_request:
   repository_dispatch:
-    types: metwork-trigger*
+    types:
+      - metwork-trigger*
 
 env:
     OS_VERSION: centos6
