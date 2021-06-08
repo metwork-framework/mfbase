@@ -105,6 +105,14 @@ EOF
         batch_psql "/tmp/extension.plpython3u" "Adding plpython3u extension" || exit 1
         rm -f "/tmp/extension.plpython3u"
     fi
+    if test "${MFBASE_POSTGRESQL_AIRTIDE}" = "1"; then
+        cat >/tmp/extension.airtide <<EOF
+CREATE EXTENSION postgresql_airtide;
+EOF
+        batch_psql "/tmp/extension.airtide" "Adding postgresql_airtide extension" || exit 1
+        rm -f "/tmp/extension.airtide"
+    fi
+
 
     echo -n "- Stopping mfbase services..."
     echo_running

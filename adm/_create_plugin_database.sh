@@ -59,5 +59,13 @@ EOF
     batch_psql "/tmp/extension.plpython3u" "Creating plpython3u extension" "plugin_${NAME}" "metwork" || exit 1
     rm -f "/tmp/extension.plpython3u"
 fi
+if test "${MFBASE_POSTGRESQL_AIRTIDE}" = "1"; then
+    cat >/tmp/extension.airtide <<EOF
+CREATE EXTENSION postgresql_airtide;
+EOF
+    batch_psql "/tmp/extension.airtide" "Creating postgresql_airtide extension" "plugin_${NAME}" "metwork" || exit 1
+    rm -f "/tmp/extension.airtide"
+fi
+
 
 _fix_plugin_owner.py "plugin_${NAME}" "plugin_${NAME}" >/dev/null
