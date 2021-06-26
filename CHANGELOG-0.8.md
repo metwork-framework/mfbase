@@ -1,5 +1,11 @@
 # release_0.8 CHANGELOG
 
+## v0.8.1 (2021-06-25)
+
+### New Features
+
+- add a configuration option to open the endpoint /uuid to other … (backport #136) (#185)
+
 ## v0.8.0 (2019-08-14)
 
 ### New Features
