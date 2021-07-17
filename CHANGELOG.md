@@ -1,5 +1,11 @@
 # release_1.0 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- fix extra daemon for mfbase plugins (#186)
+
 ## v1.0.4 (2021-02-11)
 
 ### Bug Fixes
