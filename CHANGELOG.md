@@ -9,5 +9,6 @@
 ### Bug Fixes
 
 - fix extra daemon for mfbase plugins (#186)
+- fix nginx startup fix with send_nginx_logs=1 (#189)
 
 
