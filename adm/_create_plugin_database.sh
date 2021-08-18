@@ -66,6 +66,21 @@ EOF
     batch_psql "/tmp/extension.airtide" "Creating postgresql_airtide extension" "plugin_${NAME}" "metwork" || exit 1
     rm -f "/tmp/extension.airtide"
 fi
+if test "${MFBASE_POSTGRESQL_GEOHASH}" = "1"; then
+    cat >/tmp/extension.geohash <<EOF
+CREATE EXTENSION postgis_geohash;
+EOF
+    batch_psql "/tmp/extension.geohash" "Creating postgis_geohash extension" "plugin_${NAME}" "metwork" || exit 1
+    rm -f "/tmp/extension.geohash"
+fi
+if test "${MFBASE_POSTGRESQL_PARTMAN}" = "1"; then
+    cat >/tmp/extension.partman <<EOF
+CREATE SCHEMA partman;
+CREATE EXTENSION pg_partman SCHEMA partman;
+EOF
+    batch_psql "/tmp/extension.partman" "Creating pg_partman extension" "plugin_${NAME}" "metwork" || exit 1
+    rm -f "/tmp/extension.partman"
+fi
 
 
 _fix_plugin_owner.py "plugin_${NAME}" "plugin_${NAME}" >/dev/null
