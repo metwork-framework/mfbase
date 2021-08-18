@@ -22,9 +22,17 @@ password=metwork
 # Change plpython3u to 1 if you want to create the extension
 plpython3u=0
 
-# By default extension airtide is not created (it is very specific)
+# By default extension postgresql_airtide is not created (it is very specific)
 # Change airtide to 1 if you want to create the extension
 airtide=0
+
+# By default extension postgis_geohash is not created (it is very specific)
+# Change geohash to 1 if you want to create the extension
+geohash=0
+
+# By default extension pg_partman is not created (it is very specific)
+# Change partman to 1 if you want to create the extension
+partman=0
 
 ##################
 ##### CIRCUS #####
