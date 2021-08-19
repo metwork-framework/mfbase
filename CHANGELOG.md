@@ -5,6 +5,7 @@
 ### New Features
 
 - create new extension postgresql_airtide (#183)
+- add environment variables to optionally create extensions postg… (#191)
 
 ### Bug Fixes
 
