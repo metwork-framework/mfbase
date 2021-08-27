@@ -24,6 +24,7 @@ env:
     WORKFLOW_SCRIPTS_DIR: .github/workflows
     DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
     PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
+    PAYLOAD_OS: ${{ github.event.client_payload.os}}
 
 jobs:
   ci_build:
@@ -161,7 +162,7 @@ jobs:
           token: ${{ secrets.METWORK_ACCESS_TOKEN }}
           repository: metwork-framework/docker-mfbaseplugins-centos7-buildimage
           event-type: metwork-trigger-${{ steps.SetVariables.outputs.branch }}
-          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "${OS_VERSION}"}'
+          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "${{ steps.SetVariables.outputs.os }}"}'
       - name: dispatch plugins buildimage centos8
         if: ${{ github.event_name != 'pull_request' && github.event_name != 'tags' && steps.SetVariables.outputs.branch != 'null' && steps.BuildStep.outputs.bypass == 'false' }}
         uses: peter-evans/repository-dispatch@v1
@@ -169,7 +170,7 @@ jobs:
           token: ${{ secrets.METWORK_ACCESS_TOKEN }}
           repository: metwork-framework/docker-mfbaseplugins-centos8-buildimage
           event-type: metwork-trigger-${{ steps.SetVariables.outputs.branch }}
-          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "${OS_VERSION}"}'
+          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "${{ steps.SetVariables.outputs.os }}"}'
 
 
 
