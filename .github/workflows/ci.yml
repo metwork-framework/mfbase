@@ -17,7 +17,7 @@ on:
       - metwork-trigger*
 
 env:
-    OS_VERSION: centos6
+    OS_VERSION: ${{ github.event.client_payload.os || centos6 }}
 
 
     DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY -e OS_VERSION"
@@ -159,7 +159,7 @@ jobs:
           token: ${{ secrets.METWORK_ACCESS_TOKEN }}
           repository: metwork-framework/docker-mfbaseplugins-centos7-buildimage
           event-type: metwork-trigger-${{ steps.SetVariables.outputs.branch }}
-          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}"}'
+          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "${OS_VERSION}"}'
       - name: dispatch plugins buildimage centos8
         if: ${{ github.event_name != 'pull_request' && github.event_name != 'tags' && steps.SetVariables.outputs.branch != 'null' && steps.BuildStep.outputs.bypass == 'false' }}
         uses: peter-evans/repository-dispatch@v1
@@ -167,7 +167,7 @@ jobs:
           token: ${{ secrets.METWORK_ACCESS_TOKEN }}
           repository: metwork-framework/docker-mfbaseplugins-centos8-buildimage
           event-type: metwork-trigger-${{ steps.SetVariables.outputs.branch }}
-          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}"}'
+          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "${OS_VERSION}"}'
 
 
 
