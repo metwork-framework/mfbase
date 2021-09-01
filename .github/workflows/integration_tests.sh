@@ -14,7 +14,6 @@ echo -e "gpgcheck=0\n\enabled=1\n\metadata_expire=0\n" >>/etc/yum.repos.d/metwor
 
     yum -y localinstall ./rpms/metwork-mfbase*.rpm
     yum -y install make
-
     su --command="mfbase.init" - mfbase
     su --command="mfbase.start" - mfbase
     su --command="mfbase.status" - mfbase
