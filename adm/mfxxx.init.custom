@@ -112,6 +112,21 @@ EOF
         batch_psql "/tmp/extension.airtide" "Adding postgresql_airtide extension" || exit 1
         rm -f "/tmp/extension.airtide"
     fi
+    if test "${MFBASE_POSTGRESQL_GEOHASH}" = "1"; then
+        cat >/tmp/extension.geohash <<EOF
+CREATE EXTENSION postgis_geohash;
+EOF
+        batch_psql "/tmp/extension.geohash" "Adding postgis_geohash extension" || exit 1
+        rm -f "/tmp/extension.geohash"
+    fi
+    if test "${MFBASE_POSTGRESQL_PARTMAN}" = "1"; then
+        cat >/tmp/extension.partman <<EOF
+CREATE SCHEMA partman;
+CREATE EXTENSION pg_partman SCHEMA partman;
+EOF
+        batch_psql "/tmp/extension.partman" "Adding pg_partman extension" || exit 1
+        rm -f "/tmp/extension.partman"
+    fi
 
 
     echo -n "- Stopping mfbase services..."
