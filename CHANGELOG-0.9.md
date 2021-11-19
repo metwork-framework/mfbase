@@ -46,6 +46,9 @@
 
 ## v0.9.0 (2019-10-22)
 
-- No interesting change
+### New Features
+
+- replace MODULE* environment variables names by MFMODULE* (MODULE_HOME becomes MFMODULE_HOME and so on)
+- build mfbase without mfcom (mfcom layers are now included in mfext)
 
 
