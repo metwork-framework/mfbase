@@ -31,6 +31,7 @@ esac
 if [ -z ${B} ]; then
   B=null
 fi
+SKIP_DISPATCH=false
 if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch" ]; then
     case "${GITHUB_REF}" in
         refs/heads/experimental* | refs/heads/master | refs/heads/release_*)
@@ -40,7 +41,8 @@ if [ "${GITHUB_EVENT_NAME}" != "repository_dispatch" ]; then
         refs/heads/integration | refs/heads/ci* | refs/heads/pci*)
             DEP_BRANCH=integration
             DEP_DIR=master
-            TARGET_DIR=master;;
+            TARGET_DIR=master
+            SKIP_DISPATCH=true;;
         refs/tags/v*)
             TAG=${GITHUB_REF#refs/tags/}
             DEP_BRANCH=${B}
@@ -93,6 +95,6 @@ echo "::set-output name=dep_dir::${DEP_DIR}"
 echo "::set-output name=buildimage::metwork/mfxxx-centos6-buildimage:${DEP_BRANCH}"
 echo "::set-output name=testimage::metwork/mfxxx-centos6-testimage:${DEP_BRANCH}"
 echo "::set-output name=buildlog_dir::/pub/metwork/${CI}/buildlogs/${B}/mfbase/centos6/${GITHUB_RUN_NUMBER}"
-
+echo "::set-output name=skip_dispatch::${SKIP_DISPATCH}"
 echo "::set-output name=rpm_dir::/pub/metwork/${CI}/rpms/${B}/centos6"
 echo "::set-output name=doc_dir::/pub/metwork/${CI}/docs/${B}/mfbase"
