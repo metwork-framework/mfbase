@@ -21,8 +21,8 @@ is the layer dependencies root.
 The `python3` wrapper is available in `${MFEXT_HOME}/bin`. It executes
 a python3 interpreter with following layers loaded :
 
+- `python3_core@mfext`
 - `python3@mfext` (if installed)
-- scientific_core@mfext ` (if installed)
 - `python3@{current_module}` (if installed)
 
 So, if you want to execute a python3 script without any question about currently
@@ -47,7 +47,7 @@ python3 /path/to/a/python3/script.py
 ### python wrapper
 
 The `python` wrapper is available in `${MFEXT_HOME}/bin`. It works exactly
-as the above wrappers. But the major python version is selected with
+as the two above wrappers. But the major python version is selected with
 the `METWORK_PYTHON_MODE` environment variable.
 
 {% endblock %}
