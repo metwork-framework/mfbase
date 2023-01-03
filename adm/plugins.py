@@ -52,8 +52,11 @@ MFBASE_SCHEMA_OVERRIDE = {
             "storage_forbidden_dav_methods": {
                 **NON_REQUIRED_STRING,
                 "default": "",
-                "coerce": (null_to_empty,
-                           coerce_storage_forbidden_dav_methods)
+                "coerce": (null_to_empty, coerce_storage_forbidden_dav_methods)
+            },
+            "storage_dav_access": {
+                **NON_REQUIRED_STRING,
+                "default": ""
             }
         }
     }
@@ -97,6 +100,11 @@ class MfbaseConfiguration(Configuration):
     def storage_dav_methods(self):
         self.load()
         return self._doc["general"]["_storage_dav_methods"]
+
+    @property
+    def storage_dav_access(self):
+        self.load()
+        return self._doc["general"]["storage_dav_access"]
 
     @property
     def use_storage(self):
