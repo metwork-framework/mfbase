@@ -23,9 +23,9 @@ if test $I -ge 20; then
     exit 1
 fi
 
-curl -v -XPUT --data-binary @test.sh "http://localhost:${MFBASE_NGINX_PORT}/storage/foobar2/foo"
+curl -v -XPUT --data-binary @test1.sh "http://localhost:${MFBASE_NGINX_PORT}/storage/foobar2/foo"
 wget -O foo2 "http://localhost:${MFBASE_NGINX_PORT}/storage/foobar2/foo"
-diff foo2 test.sh
+diff foo2 test1.sh
 rm -f foo2
 plugins.uninstall foobar2
 rm -Rf foobar2*
