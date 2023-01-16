@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mfbase.stop
+mfbase.start
+
 plugins.uninstall foobar3 >/dev/null 2>&1
 rm -Rf foobar3*
 
@@ -12,7 +15,7 @@ cd foobar3
 cat config.ini | sed "s/storage_dav_access=user:rw/storage_dav_access=user:rw,group:rw,all:r/" > config.ini.new
 mv config.ini.new config.ini
 rm -f perm_prev.txt
-for l in "user:rw-" "group:rw-" "all:r--"; do
+for l in "user::rw-" "group::rw-" "other::r--"; do
 echo $l >> perm_prev.txt
 done
 make release
@@ -38,8 +41,8 @@ curl -v -XPUT --data-binary @config.ini "http://localhost:${MFBASE_NGINX_PORT}/s
 getfacl ${MFMODULE_RUNTIME_HOME}/var/storage/foobar3/foo3 | grep "::" > perm.txt
 diff perm.txt perm_prev.txt
 rm -f perm*.txt foobar3*.plugin
-plugins.uninstall foobar3
 cd ..
+plugins.uninstall foobar3
 rm -Rf foobar3*
 
 exit 0
