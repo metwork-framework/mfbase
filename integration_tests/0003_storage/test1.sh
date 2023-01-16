@@ -9,9 +9,10 @@ set -e
 bootstrap_plugin.py create --no-input foobar2
 
 cd foobar2
-cat config.ini
 cat config.ini | sed "s/storage_dav_access=user:rw/storage_dav_access=user:rw,group:rw,all:r/" > config.ini.new
 mv config.ini.new config.ini
+echo "storage_dav_access in config.ini : "
+grep storage_dav_access config.ini | grep -v "#"
 rm -f perm_prev.txt
 for l in "user::rw-" "group::rw-" "other::r--"; do
 echo $l >> perm_prev.txt
