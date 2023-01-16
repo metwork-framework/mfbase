@@ -18,6 +18,7 @@ for l in "user::rw-" "group::rw-" "other::r--"; do
 echo $l >> perm_prev.txt
 done
 make develop
+sleep 3
 
 I=0
 rm -f foo2
