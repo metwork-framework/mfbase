@@ -29,4 +29,44 @@ diff foo2 test.sh
 rm -f foo2
 plugins.uninstall foobar2
 rm -Rf foobar2*
+
+#Test storage_dav_access
+bootstrap_plugin.py create --no-input foobar2
+cd foobar2
+cat config.ini | sed "s/storage_dav_access=user:rw/storage_dav_access=user:rw,group:rw,all:r/" > config.ini.new
+mv config.ini.new config.ini
+rm -f perm_prev.txt
+for l in "user:rw-" "group:rw-" "all:r--"; do
+echo $l >> perm_prev.txt
+done
+make release
+plugins.install ./foobar2*plugin
+curl -v -XPUT --data-binary @config.ini "http://localhost:${MFBASE_NGINX_PORT}/storage/foobar2/foo2"
+getfacl ${MFMODULE_RUNTIME_HOME}/var/storage/foobar2/foo2 | grep "::" > perm.txt
+diff perm.txt perm_prev.txt
+rm -f perm*.txt foobar2*.plugin
+plugins.uninstall foobar2
+cd ..
+rm -Rf foobar2*
+
+#Test if storage_dav_access is missing
+rm -Rf foobar3*
+bootstrap_plugin.py create --no-input foobar3
+cd foobar3
+cat config.ini | grep -v storage_dav_access > config.ini.new
+mv config.ini.new config.ini
+rm -f perm_prev.txt
+for l in "user:rw-" "group:---" "all:---"; do
+echo $l >> perm_prev.txt
+done
+make release
+plugins.install ./foobar3*plugin
+curl -v -XPUT --data-binary @config.ini "http://localhost:${MFBASE_NGINX_PORT}/storage/foobar3/foo3"
+getfacl ${MFMODULE_RUNTIME_HOME}/var/storage/foobar3/foo3 | grep "::" > perm.txt
+diff perm.txt perm_prev.txt
+rm -f perm*.txt
+plugins.uninstall foobar3
+
+cd ..
+rm -Rf foobar3*
 exit 0
