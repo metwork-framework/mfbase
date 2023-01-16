@@ -17,8 +17,7 @@ rm -f perm_prev.txt
 for l in "user::rw-" "group::rw-" "other::r--"; do
 echo $l >> perm_prev.txt
 done
-make release
-plugins.install ./foobar2*plugin
+make develop
 
 I=0
 rm -f foo2
