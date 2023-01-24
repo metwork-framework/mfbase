@@ -68,3 +68,5 @@ if test "${USE_POSTGRESQL}" = "1"; then
         batch_psql "${SQLFILE}" "Playing ${BASENAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
     done
 fi
+
+"${MFEXT_HOME}/bin/_plugins.postinstall" "${1}" "${2}" "${3}"
