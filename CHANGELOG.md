@@ -9,5 +9,6 @@
 ### Bug Fixes
 
 - fix possibility to change plugin release (#214)
+- run plugin postinstall script if present (#233)
 
 
