@@ -1,5 +1,11 @@
 # release_2.1 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- run plugin postinstall script if present (backport #233) (#234)
+
 ## v2.1.2 (2023-01-09)
 
 ### Bug Fixes
