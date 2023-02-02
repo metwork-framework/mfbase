@@ -54,5 +54,4 @@ mkdir rpms
 mv /opt/metwork-mfbase-${TARGET_DIR}/*.rpm rpms
 
  
-
-echo "::set-output name=bypass::false"
+echo "bypass=false" >> github_output
