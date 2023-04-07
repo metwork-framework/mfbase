@@ -1,5 +1,11 @@
 # release_2.1 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- fix .releaseignore to ignore .git folder when releasing plugins (backport #239) (#240)
+
 ## v2.1.3 (2023-01-26)
 
 ### Bug Fixes
