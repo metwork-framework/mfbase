@@ -5,6 +5,7 @@
 ### New Features
 
 - add possibility to choose permissions on webdav created files
+- upgrade jquery from 3.3.1 to 3.5.1 (security update) (#241)
 
 ### Bug Fixes
 
