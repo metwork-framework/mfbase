@@ -48,7 +48,7 @@ if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
     rm -f "/tmp/initdb_pwfile.$$"
 
     echo "include '${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf'" >>${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
-    PG_HBA="${MFMODULE_RUNTIME_HOME}/var/pgsql/pg_hba.conf"
+    PG_HBA="${MFBASE_POSTGRESQL_DATA_DIR}/pg_hba.conf"
     cat >${PG_HBA} <<EOF
 local   all all trust
 host    sameuser all    0.0.0.0/0   md5"
