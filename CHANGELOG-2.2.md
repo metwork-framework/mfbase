@@ -1,5 +1,11 @@
 # release_2.2 CHANGELOG
 
+## v2.2.1 (2023-12-15)
+
+### Bug Fixes
+
+- error during mfbase.init if postgresql data_dir modified (backport #255) (#256)
+
 ## v2.2.0 (2023-11-28)
 
 ### New Features
