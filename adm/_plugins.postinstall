@@ -24,13 +24,13 @@ if ! test -d "${PLUGIN_HOME}"; then
     exit 0
 fi
 
-T=$(config.py "${PLUGIN_HOME}/config.ini" general use_postgresql 2>/dev/null)
+T=$(config.py "${PLUGIN_HOME}/config.ini" general _use_postgresql 2>/dev/null)
 if test "${T}" = "0"; then
     USE_POSTGRESQL=0
 else
     USE_POSTGRESQL=1
 fi
-T=$(config.py "${PLUGIN_HOME}/config.ini" general use_storage 2>/dev/null)
+T=$(config.py "${PLUGIN_HOME}/config.ini" general _use_storage 2>/dev/null)
 if test "${T}" = "0"; then
     USE_STORAGE=0
 else
