@@ -57,7 +57,11 @@ MFBASE_SCHEMA_OVERRIDE = {
             "storage_dav_access": {
                 **NON_REQUIRED_STRING,
                 "default": ""
-            }
+            },
+            "storage_autoindex_format": {
+                **NON_REQUIRED_STRING,
+                "default": "html",
+            },
         }
     }
 }
@@ -130,3 +134,8 @@ class MfbaseConfiguration(Configuration):
     def storage_forbidden_dav_methods(self):
         self.load()
         return self._doc["general"]["storage_forbidden_dav_methods"]
+
+    @property
+    def storage_autoindex_format(self):
+        self.load()
+        return self._doc["general"]["storage_autoindex_format"]
