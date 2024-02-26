@@ -20,7 +20,7 @@ source "${MFMODULE_HOME}/share/sqltools.sh"
 
 echo -n "- Creating database plugin_${NAME}..."
 echo_running
-createdb -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" --locale="${MFBASE_POSTGRESQL_LOCALE}" "plugin_${NAME}" >/tmp/createdb.$$ 2>&1
+createdb -h "${MFMODULE_RUNTIME_HOME}/var" -p "${MFBASE_POSTGRESQL_PORT}" -U "${MFBASE_POSTGRESQL_USERNAME}" --owner="plugin_${NAME}" --locale="${MFBASE_POSTGRESQL_LOCALE}" "plugin_${NAME}" >/tmp/createdb.$$ 2>&1
 if test $? -eq 0; then
     echo_ok
     rm -f /tmp/createdb.$$
@@ -30,12 +30,20 @@ else
     exit 1
 fi
 
-cat >/tmp/grant.$$ <<EOF
+cat >/tmp/alter_user.$$ <<EOF
 ALTER USER "plugin_${NAME}" WITH PASSWORD 'plugin_${NAME}';
-GRANT ALL PRIVILEGES ON DATABASE "plugin_${NAME}" to "plugin_${NAME}";
 EOF
-batch_psql /tmp/grant.$$ "Granting all privileges for user plugin_${NAME}" || exit 1
-rm -f /tmp/grant.$$
+batch_psql /tmp/alter_user.$$ "Updating password for user plugin_${NAME}" || exit 1
+rm -f /tmp/alter_user.$$
+
+# From PostgreSQL v15, creation permission is removed on public schema, if the user is not owner of the database
+# We create a schema dedicated to the database owner
+# As default search_path is $(user), public... the schema must have the same name than the owner
+cat >/tmp/create_schema.$$ <<EOF
+CREATE SCHEMA IF NOT EXISTS "plugin_${NAME}";
+EOF
+batch_psql /tmp/create_schema.$$ "Creating schema for database plugin_${NAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
+rm -f /tmp/create_schema.$$
 
 cat >/tmp/extensions.$$ <<EOF
 CREATE EXTENSION postgis;
