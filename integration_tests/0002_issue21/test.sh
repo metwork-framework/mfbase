@@ -17,4 +17,5 @@ EOF
 batch_psql "/tmp/postgis.sql" "test postgis" plugin_foobar plugin_foobar
 
 plugins.uninstall foobar
+rm -f /tmp/postgis.sql
 rm -Rf foobar*
