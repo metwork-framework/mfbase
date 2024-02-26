@@ -40,7 +40,7 @@ rm -f /tmp/alter_user.$$
 # We create a schema dedicated to the database owner
 # As default search_path is $(user), public... the schema must have the same name than the owner
 cat >/tmp/create_schema.$$ <<EOF
-CREATE SCHEMA "plugin_${NAME}";
+CREATE SCHEMA IF NOT EXISTS "plugin_${NAME}";
 EOF
 batch_psql /tmp/create_schema.$$ "Creating schema for database plugin_${NAME}" "plugin_${NAME}" "plugin_${NAME}" || exit 1
 rm -f /tmp/create_schema.$$
