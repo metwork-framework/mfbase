@@ -1,5 +1,17 @@
 # release_2.2 CHANGELOG
 
+## v2.2.2 (2024-02-26)
+
+### New Features
+
+- handle autoindex format (backport #261) (#273)
+
+### Bug Fixes
+
+- .gitignore missing for new mfbase plugins (#257) (#258)
+- configurations _use_postgresql and _use_storage are ignored (#262) (backport #263) (#266)
+- major issue with public schema (#252) (#264)
+
 ## v2.2.1 (2023-12-15)
 
 ### Bug Fixes
