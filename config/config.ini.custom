@@ -10,6 +10,7 @@
 # in mfbase (at all)
 flag=1
 data_dir={{MFMODULE_RUNTIME_HOME}}/var/pgsql
+max_connections=100
 dbname=metwork
 port=7432
 locale=C
