@@ -1,5 +1,11 @@
 # release_2.2 CHANGELOG
 
+## v2.2.3 (2024-03-06)
+
+### New Features
+
+- customize max_connections (#276)
+
 ## v2.2.2 (2024-02-26)
 
 ### New Features
