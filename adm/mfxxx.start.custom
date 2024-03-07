@@ -21,3 +21,11 @@
     fi
 {% endblock %}
 
+{% block custom %}
+    # Comment line "max_connections = " as it is now provided from config in ${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf
+    grep '^max_connections =' ${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf >/dev/null 2>&1
+    if test $? -eq 0; then
+        sed -i 's/^max_connections = */#max_connections (default 100) is set in included file (see below)/' ${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
+    fi
+{% endblock %}
+
