@@ -8,6 +8,10 @@
 [postgresql]
 # Set flag=0 here if you don't want to use posgresql
 # in mfbase (at all)
+# If you change max_connections, you must stop/start mfbase 
+#   so that it is taken into account
+# max_connections is not modified in {{MFMODULE_RUNTIME_HOME}}/var/pgsql/postgresql.conf
+#   only in {{MFMODULE_RUNTIME_HOME}}/tmp/config_auto/postgresql.conf included in it
 flag=1
 data_dir={{MFMODULE_RUNTIME_HOME}}/var/pgsql
 max_connections=100
