@@ -5,6 +5,7 @@
 ### New Features
 
 - handle autoindex format (#261)
+- customize max_connections
 - customize max_connections (#276)
 
 ### Bug Fixes

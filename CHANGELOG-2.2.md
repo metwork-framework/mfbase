@@ -1,5 +1,9 @@
 # release_2.2 CHANGELOG
 
+## v2.2.4 (2024-03-07)
+
+- No interesting change
+
 ## v2.2.3 (2024-03-06)
 
 ### New Features
