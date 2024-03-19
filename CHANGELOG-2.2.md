@@ -1,5 +1,11 @@
 # release_2.2 CHANGELOG
 
+## v2.2.5 (2024-03-14)
+
+### Bug Fixes
+
+- configuration _use_storage ignored (#262 bis)
+
 ## v2.2.4 (2024-03-07)
 
 - No interesting change
