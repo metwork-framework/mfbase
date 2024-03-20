@@ -1,5 +1,15 @@
 # release_2.1 CHANGELOG
 
+## v2.1.5 (2024-02-26)
+
+### New Features
+
+- fix link to rpms repository in installation guide (#248)
+
+### Bug Fixes
+
+- rename .release_ignore file to .releaseignore (closes #249) (backport #250) (#251)
+
 ## v2.1.4 (2023-04-07)
 
 ### Bug Fixes
