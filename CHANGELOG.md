@@ -15,5 +15,6 @@
 - configurations _use_postgresql and _use_storage are ignored (#262)
 - major issue with public schema (#252) (#264)
 - configuration _use_storage ignored (#262 bis)
+- max_connections in postgresql.conf should be configurable (fix) (closes #275)
 
 
