@@ -1,5 +1,11 @@
 # release_2.2 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- max_connections in postgresql.conf should be configurable (fix) (closes #275)
+
 ## v2.2.5 (2024-03-14)
 
 ### Bug Fixes
