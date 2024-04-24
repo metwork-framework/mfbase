@@ -7,6 +7,7 @@
 - handle autoindex format (#261)
 - customize max_connections
 - customize max_connections (#276)
+- add iniscripts, make and crontab as dependencies (#293)
 
 ### Bug Fixes
 
