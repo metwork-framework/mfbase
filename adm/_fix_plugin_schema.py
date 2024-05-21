@@ -30,7 +30,7 @@ cur.execute(sql1)
 for table in cur.fetchall():
     sql2 = "ALTER TABLE public.%s SET SCHEMA %s" % (table[0], args.plugin_user)
     print(sql2)
-    #cur.execute(sql2)
+    cur.execute(sql2)
 
 # SEQUENCES
 sql3 = "SELECT sequencename FROM pg_sequences WHERE schemaname='public'"
@@ -38,7 +38,7 @@ cur.execute(sql3)
 for sequence in cur.fetchall():
     sql4 = "ALTER SEQUENCE public.%s SET SCHEMA %s" % (sequence[0], args.plugin_user)
     print(sql4)
-    #cur.execute(sql4)
+    cur.execute(sql4)
 
 # INDEXES
 sql5 = "SELECT indexname FROM pg_indexes WHERE schemaname='public' " \
@@ -47,4 +47,4 @@ cur.execute(sql5)
 for index in cur.fetchall():
     sql6 = "ALTER INDEX public.%s SET SCHEMA %s" % (index[0], args.plugin_user)
     print(sql6)
-    #cur.execute(sql6)
+    cur.execute(sql6)
