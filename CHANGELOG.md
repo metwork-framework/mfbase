@@ -6,6 +6,10 @@
 
 - add iniscripts, make and crontab as dependencies (backport #293) (#294)
 
+### Bug Fixes
+
+- create schema error using scripts (#296)
+
 ## v2.2.6 (2024-03-21)
 
 ### Bug Fixes
