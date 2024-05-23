@@ -9,6 +9,7 @@
 ### Bug Fixes
 
 - create schema error using scripts (#296)
+- add a script for fixing schema (public) of plugin's objects (#299)
 
 ## v2.2.6 (2024-03-21)
 
