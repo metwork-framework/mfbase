@@ -18,5 +18,7 @@
 - configuration _use_storage ignored (#262 bis)
 - max_connections in postgresql.conf should be configurable (fix) (closes #275)
 - create schema error using scripts (#296)
+- add a script for fixing schema (public) of plugin's objects (#252)
+- remove useless comment
 
 
