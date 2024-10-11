@@ -56,6 +56,7 @@ CREATE EXTENSION btree_gist;
 CREATE EXTENSION btree_gin;
 CREATE EXTENSION pg_trgm;
 CREATE EXTENSION pgcrypto;
+CREATE EXTENSION pg_uuidv7;
 EOF
 batch_psql /tmp/extensions.$$ "Creating extensions" "plugin_${NAME}" "metwork" || exit 1
 rm -f /tmp/extensions.$$
