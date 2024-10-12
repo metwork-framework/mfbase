@@ -8,6 +8,7 @@
 - customize max_connections
 - customize max_connections (#276)
 - add iniscripts, make and crontab as dependencies (#293)
+- create extension pg_uuidv7 (#302)
 
 ### Bug Fixes
 
