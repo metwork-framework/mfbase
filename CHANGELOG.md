@@ -1,5 +1,11 @@
 # release_2.2 CHANGELOG
 
+## [Unreleased]
+
+### New Features
+
+- create extension pg_uuidv7 (backport #302) (#303)
+
 ## v2.2.7 (2024-05-23)
 
 ### New Features
