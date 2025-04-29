@@ -1,10 +1,14 @@
 # release_2.2 CHANGELOG
 
-## [Unreleased]
+## v2.2.8 (2025-04-29)
 
 ### New Features
 
 - create extension pg_uuidv7 (backport #302) (#303)
+
+### Bug Fixes
+
+- fix to make _fix_plugin_schema.py available in rpms (#304)
 
 ## v2.2.7 (2024-05-23)
 
