@@ -21,5 +21,6 @@
 - create schema error using scripts (#296)
 - add a script for fixing schema (public) of plugin's objects (#252)
 - remove useless comment
+- fix to make _fix_plugin_schema.py available in rpms (#304)
 
 
