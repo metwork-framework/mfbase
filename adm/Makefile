@@ -1,4 +1,4 @@
-BINS=postgresql.status before_start_postgresql _plugins.postinstall _plugins.preuninstall plugins.pgrestore.sh plugins.pgdump.sh _fix_plugin_owner.py _create_plugin_database.sh before_start_nginx _make_nginx_conf __make_nginx_conf mfbase_conf_monitor.py _make_circus_conf
+BINS=postgresql.status before_start_postgresql _plugins.postinstall _plugins.preuninstall plugins.pgrestore.sh plugins.pgdump.sh _fix_plugin_owner.py _fix_plugin_schema.py _create_plugin_database.sh before_start_nginx _make_nginx_conf __make_nginx_conf mfbase_conf_monitor.py _make_circus_conf
 SHARES=sqltools.sh
 
 include root.mk
