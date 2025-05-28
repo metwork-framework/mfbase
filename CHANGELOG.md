@@ -1,5 +1,11 @@
 # release_2.2 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- fix mfbase.start with postgresql disabled (backport #308) (#309)
+
 ## v2.2.8 (2025-04-29)
 
 ### New Features
