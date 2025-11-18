@@ -15,6 +15,7 @@
 flag=1
 data_dir={{MFMODULE_RUNTIME_HOME}}/var/pgsql
 max_connections=100
+max_locks_per_transaction=64
 dbname=metwork
 port=7432
 locale=C

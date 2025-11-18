@@ -25,6 +25,8 @@
     if test "${MFBASE_POSTGRESQL_FLAG}" = "1"; then
         # Comment line "max_connections = " as it is now provided from config in ${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf
         sed -i 's/^#\?max_connections.*/#max_connections (default 100) is set in included file (see below)/g' ${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
+        # Comment line "max_locks_per_transaction = " as it is now provided from config in ${MFMODULE_RUNTIME_HOME}/tmp/config_auto/postgresql.conf
+        sed -i 's/^#\?max_locks_per_transaction.*/#max_locks_per_transaction (default 64) is set in included file (see below)/g' ${MFBASE_POSTGRESQL_DATA_DIR}/postgresql.conf
     fi
 {% endblock %}
 
