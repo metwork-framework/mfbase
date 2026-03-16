@@ -90,13 +90,6 @@ EOF
     batch_psql "/tmp/extension.partman" "Creating pg_partman extension" "plugin_${NAME}" "metwork" || exit 1
     rm -f "/tmp/extension.partman"
 fi
-if test "${MFBASE_POSTGRESQL_PG_CRON}" = "1"; then
-   cat >/tmp/extension.pg_cron <<EOF
-CREATE EXTENSION pg_cron;
-EOF
-    batch_psql "/tmp/extension.pg_cron" "Creating pg_cron extension" "plugin_${NAME}" "metwork" || exit 1
-    rm -f "/tmp/extension.pg_cron"
-fi
 
 
 _fix_plugin_owner.py "plugin_${NAME}" "plugin_${NAME}" >/dev/null
