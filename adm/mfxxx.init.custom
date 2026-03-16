@@ -127,6 +127,13 @@ EOF
         batch_psql "/tmp/extension.partman" "Adding pg_partman extension" || exit 1
         rm -f "/tmp/extension.partman"
     fi
+    if test "${MFBASE_POSTGRESQL_PG_CRON}" = "1"; then
+        cat >/tmp/extension.pg_cron <<EOF
+CREATE EXTENSION pg_cron;
+EOF
+        batch_psql "/tmp/extension.pg_cron" "Adding pg_cron extension" || exit 1
+        rm -f "/tmp/extension.pg_cron"
+    fi
 
 
     echo -n "- Stopping mfbase services..."
