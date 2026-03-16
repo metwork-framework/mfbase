@@ -40,6 +40,11 @@ geohash=0
 # Change partman to 1 if you want to create the extension
 partman=0
 
+# By default extension pg_cron is not created
+# Change pg_cron to 1 if you want to create the extension
+# See pg_cron usage here : https://github.com/citusdata/pg_cron
+pg_cron=0
+
 ##################
 ##### CIRCUS #####
 ##################
