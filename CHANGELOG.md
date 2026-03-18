@@ -1,5 +1,12 @@
 # release_2.3 CHANGELOG
 
+## [Unreleased]
+
+### New Features
+
+- customize max_locks_per_transaction
+- add optional pg_cron extension (backport #320) (#322)
+
 ## v2.3.3 (2025-10-18)
 
 ### New Features
