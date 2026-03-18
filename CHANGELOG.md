@@ -7,6 +7,7 @@
 - add check_delay in circus arbiter config setting (#316)
 - customize max_locks_per_transaction
 - customize max_locks_per_transaction
+- add optional pg_cron extension (#320)
 
 ### Bug Fixes
 
